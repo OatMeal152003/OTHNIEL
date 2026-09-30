@@ -1,0 +1,20 @@
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  background: #ffffff;
+  color: #0a0a0a;
+}
+body.dark-mode {
+  background: #000000;
+  color: #ffffff;
+  color-scheme: dark;
+}
+#root { min-height: 100vh; background: #ffffff; }
+body.dark-mode #root { background: #000000; }
+
+h1, h2, .section-title, .hero h1, .hero h2, .project-body h3, .edu-card h3, .hero-card h3 {
+  font-family: 'Playfair Display', Georgia, serif;
+  letter-spacing: -0.01em;
+}
