@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { FaBars, FaTimes, FaCode, FaMoon, FaSun } from 'react-icons/fa'
+import { FaBars, FaTimes, FaMoon, FaSun } from 'react-icons/fa'
 
 const links = [
   { id: 'about', label: 'About' },
@@ -23,7 +23,7 @@ export default function Navbar({ dark, onToggle }) {
     <header className={`nav ${scrolled ? 'nav-scrolled' : ''}`}>
       <div className="nav-inner">
         <a href="#about" className="logo">
-          <span className="logo-mark" aria-hidden="true"><FaCode /></span>
+          <img src="./images/OS_logo.png" alt="Othniel.dev logo" width="60" height="45" className="logo-img" />
           <span className="logo-text">Othniel.dev</span>
         </a>
         <nav id="primary-navigation" aria-label="Primary" className={`nav-links ${open ? 'open' : ''}`}>
