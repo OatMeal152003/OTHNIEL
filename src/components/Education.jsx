@@ -8,7 +8,7 @@ export default function Education() {
         <span className="section-tag">Background</span>
         <h2 className="section-title">Education</h2>
         <div className="edu-card">
-          <div className="edu-icon-box"><FaGraduationCap /></div>
+          <div className="edu-icon-box" aria-hidden="true"><FaGraduationCap /></div>
           <div>
             <h3>{education.degree}</h3>
             <p className="edu-school">{education.school}</p>

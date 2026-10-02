@@ -31,8 +31,9 @@ export default function App() {
 
   return (
     <>
+      <a href="#main-content" className="skip-link">Skip to main content</a>
       <Navbar dark={dark} onToggle={() => setDark((d) => !d)} />
-      <main>
+      <main id="main-content">
         <Hero />
         <Skills />
         <Projects />

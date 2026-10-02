@@ -84,16 +84,17 @@ export function ensureOatmealAI(onProgress) {
 
 export async function askOatmealAI(userText, history = []) {
   const eng = await ensureOatmealAI()
+  const safeUserText = String(userText ?? '').slice(0, 500)
   const chatHistory = history
     .filter((m) => m.from === 'you' || m.from === 'oatmeal')
     .slice(-8)
     .map((m) => ({
       role: m.from === 'you' ? 'user' : 'assistant',
-      content: m.text
+      content: String(m.text ?? '').slice(0, 500)
     }))
 
   const res = await eng.chat.completions.create({
-    messages: [{ role: 'system', content: systemPrompt() }, ...chatHistory, { role: 'user', content: userText }],
+    messages: [{ role: 'system', content: systemPrompt() }, ...chatHistory, { role: 'user', content: safeUserText }],
     temperature: 0.6,
     max_tokens: 220
   })

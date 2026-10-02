@@ -27,10 +27,10 @@ export default function Skills() {
             return (
               <div key={s.name} className="skill-card">
                 <div className="skill-top">
-                  <span className="skill-icon"><Icon /></span>
+                  <span className="skill-icon" aria-hidden="true"><Icon /></span>
                   <strong>{s.name}</strong>
                 </div>
-                <div className="bar">
+                <div className="bar" role="img" aria-label={`${s.name} proficiency ${s.level} percent`}>
                   <div className="bar-fill" style={{ width: `${s.level}%` }} />
                 </div>
                 <small>{s.level}% proficient</small>

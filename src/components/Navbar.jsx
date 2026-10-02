@@ -26,7 +26,7 @@ export default function Navbar({ dark, onToggle }) {
           <span className="logo-mark" aria-hidden="true"><FaCode /></span>
           <span className="logo-text">Othniel.dev</span>
         </a>
-        <nav className={`nav-links ${open ? 'open' : ''}`}>
+        <nav id="primary-navigation" aria-label="Primary" className={`nav-links ${open ? 'open' : ''}`}>
           {links.map((l) => (
             <a key={l.id} href={`#${l.id}`} onClick={() => setOpen(false)}>
               {l.label}
@@ -47,7 +47,7 @@ export default function Navbar({ dark, onToggle }) {
           >
             {dark ? <FaSun /> : <FaMoon />}
           </button>
-          <button className="nav-toggle" onClick={() => setOpen(!open)} aria-label="Toggle menu">
+          <button type="button" className="nav-toggle" onClick={() => setOpen(!open)} aria-label={open ? 'Close menu' : 'Open menu'} aria-expanded={open} aria-controls="primary-navigation">
             {open ? <FaTimes /> : <FaBars />}
           </button>
         </div>

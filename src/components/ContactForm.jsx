@@ -12,8 +12,12 @@ export default function ContactForm() {
 
   const onSubmit = (e) => {
     e.preventDefault()
-    const subject = `Portfolio inquiry from ${form.name}`
-    const body = `Name: ${form.name}\nEmail: ${form.email}\n\n${form.message}`
+    const name = form.name.trim().slice(0, 100)
+    const email = form.email.trim().slice(0, 254)
+    const message = form.message.trim().slice(0, 2000)
+    if (!name || !email || !message) return
+    const subject = `Portfolio inquiry from ${name}`
+    const body = `Name: ${name}\nEmail: ${email}\n\n${message}`
     window.open(
       `https://mail.google.com/mail/?view=cm&fs=1&to=${contact.email}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`,
       '_blank',
@@ -25,9 +29,10 @@ export default function ContactForm() {
   return (
     <form className="contact-form" onSubmit={onSubmit}>
       <h3>Send a project inquiry</h3>
-      <label>
+      <label htmlFor="contact-name">
         Your name
         <input
+          id="contact-name"
           type="text"
           name="name"
           value={form.name}
@@ -35,11 +40,13 @@ export default function ContactForm() {
           placeholder="Juan Dela Cruz"
           required
           autoComplete="name"
+          maxLength={100}
         />
       </label>
-      <label>
+      <label htmlFor="contact-email">
         Your email
         <input
+          id="contact-email"
           type="email"
           name="email"
           value={form.email}
@@ -47,17 +54,20 @@ export default function ContactForm() {
           placeholder="you@example.com"
           required
           autoComplete="email"
+          maxLength={254}
         />
       </label>
-      <label>
+      <label htmlFor="contact-message">
         Project details
         <textarea
+          id="contact-message"
           name="message"
           value={form.message}
           onChange={set('message')}
           placeholder="What do you want built? Timeline? Budget range?"
           rows={5}
           required
+          maxLength={2000}
         />
       </label>
 

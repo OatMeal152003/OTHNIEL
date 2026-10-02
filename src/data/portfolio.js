@@ -20,12 +20,12 @@ export const skills = [
 
 export const projects = [
   {
-    title: 'TypeFlow — Typing Speed App',
+    title: 'TypeForge — Typing Speed App',
     description:
       'Typing trainer inspired by Monkeytype and TypingMaster. Live WPM and accuracy tracking, timed modes, and smooth typing feedback to build speed.',
     stack: ['React', 'JavaScript', 'CSS', 'LocalStorage'],
-    link: '',
-    linkLabel: 'Code on request',
+    link: 'https://typeforge.gamer.gd',
+    linkLabel: 'Live Demo',
     icon: 'typing'
   },
   {

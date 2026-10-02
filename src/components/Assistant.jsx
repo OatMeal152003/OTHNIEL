@@ -4,9 +4,12 @@ import { getOatmealReply, oatmealSuggestions } from '../data/assistant.js'
 import { ensureOatmealAI, askOatmealAI } from '../data/oatmealAI.js'
 
 const GREETING = {
+  id: 'greeting',
   from: 'oatmeal',
   text: "Hi! I am Oatmeal, Othniel's assistant. Ask me about his skills, 5 projects, education, or how to hire him."
 }
+
+const MAX_INPUT_LENGTH = 500
 
 // aiStatus: 'loading' | 'ready' | 'failed'
 // The smart model downloads automatically in the background on page load.
@@ -29,6 +32,9 @@ export default function Assistant() {
   const bodyRef = useRef(null)
   const topicRef = useRef(null)
   const loadAttempted = useRef(false)
+  const idRef = useRef(0)
+  const inputRef = useRef(null)
+  const fabRef = useRef(null)
 
   useEffect(() => {
     if (bodyRef.current) {
@@ -43,20 +49,36 @@ export default function Assistant() {
     loadAttempted.current = true
     const timer = setTimeout(() => {
       setAiProgress({ progress: 0, text: 'Starting…' })
-      ensureOatmealAI((report) => setAiProgress(report)).then(
-        () => {
+      const run = async () => {
+        try {
+          await ensureOatmealAI((report) => setAiProgress(report))
           setAiStatus('ready')
-          setAiProgress(null)
-        },
-        () => {
+        } catch {
           // Silent fallback: offline brain keeps answering, no download talk.
           setAiStatus('failed')
+        } finally {
           setAiProgress(null)
         }
-      )
+      }
+      run()
     }, 1500)
     return () => clearTimeout(timer)
   }, [])
+
+  // Focus the input when the chat opens, restore focus to the trigger on close.
+  // Escape closes the panel.
+  useEffect(() => {
+    if (!open) return
+    inputRef.current?.focus()
+    const onKey = (e) => {
+      if (e.key === 'Escape') setOpen(false)
+    }
+    document.addEventListener('keydown', onKey)
+    return () => {
+      document.removeEventListener('keydown', onKey)
+      fabRef.current?.focus?.()
+    }
+  }, [open ])
 
   const openChat = () => {
     if (!seen) {
@@ -71,9 +93,11 @@ export default function Assistant() {
   }
 
   const send = async (raw) => {
-    const text = raw.trim()
+    const text = raw.trim().slice(0, MAX_INPUT_LENGTH)
     if (!text || typing) return
-    const nextMessages = [...messages, { from: 'you', text }]
+    idRef.current += 1
+    const userMsg = { id: `you-${idRef.current}`, from: 'you', text }
+    const nextMessages = [...messages, userMsg]
     setMessages(nextMessages)
     setInput('')
     setTyping(true)
@@ -82,11 +106,13 @@ export default function Assistant() {
     if (aiStatus === 'ready') {
       try {
         const reply = await askOatmealAI(text, nextMessages)
-        setMessages((m) => [...m, { from: 'oatmeal', text: reply }])
+        idRef.current += 1
+        setMessages((m) => [...m, { id: `oatmeal-${idRef.current}`, from: 'oatmeal', text: reply }])
       } catch {
         const { text: fallback, topic } = getOatmealReply(text, { topic: topicRef.current })
         topicRef.current = topic || topicRef.current
-        setMessages((m) => [...m, { from: 'oatmeal', text: fallback }])
+        idRef.current += 1
+        setMessages((m) => [...m, { id: `oatmeal-${idRef.current}`, from: 'oatmeal', text: fallback }])
       } finally {
         setTyping(false)
       }
@@ -96,7 +122,8 @@ export default function Assistant() {
     setTimeout(() => {
       const { text: reply, topic } = getOatmealReply(text, { topic: topicRef.current })
       topicRef.current = topic || topicRef.current
-      setMessages((m) => [...m, { from: 'oatmeal', text: reply }])
+      idRef.current += 1
+      setMessages((m) => [...m, { id: `oatmeal-${idRef.current}`, from: 'oatmeal', text: reply }])
       setTyping(false)
     }, 650)
   }
@@ -111,17 +138,20 @@ export default function Assistant() {
   return (
     <>
       <button
+        ref={fabRef}
         type="button"
         className={`oatmeal-fab ${open ? 'hidden' : ''} ${seen ? '' : 'ringing'}`}
         onClick={openChat}
         aria-label="Open Oatmeal assistant"
+        aria-expanded={open}
+        aria-haspopup="dialog"
         title="Chat with Oatmeal"
       >
         <FaRobot />
       </button>
 
       {open && (
-        <div className="oatmeal-panel" role="dialog" aria-label="Oatmeal assistant chat">
+        <div className="oatmeal-panel" role="dialog" aria-modal="true" aria-label="Oatmeal assistant chat">
           <div className="oatmeal-header">
             <span className="oatmeal-avatar"><FaRobot /></span>
             <div>
@@ -141,8 +171,8 @@ export default function Assistant() {
           )}
 
           <div className="oatmeal-body" ref={bodyRef}>
-            {messages.map((m, i) => (
-              <div key={i} className={`oatmeal-msg ${m.from}`}>
+            {messages.map((m) => (
+              <div key={m.id ?? `${m.from}-${m.text}`} className={`oatmeal-msg ${m.from}`}>
                 {m.text}
               </div>
             ))}
@@ -171,10 +201,14 @@ export default function Assistant() {
             }}
           >
             <input
+              ref={inputRef}
+              id="oatmeal-input"
               value={input}
               onChange={(e) => setInput(e.target.value)}
               placeholder="Ask about skills, projects…"
               aria-label="Message Oatmeal"
+              autoComplete="off"
+              maxLength={MAX_INPUT_LENGTH}
             />
             <button type="submit" aria-label="Send message" disabled={typing || !input.trim()}>
               <FaPaperPlane />

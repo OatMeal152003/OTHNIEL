@@ -7,7 +7,7 @@ function includesAny(text, words) {
   return words.some((w) => text.includes(w))
 }
 
-const PROJECT_WORDS = ['northline', 'typeflow', 'inventory', 'voting', 'ssc', 'money', 'treasury', 'typing', 'monkey', 'wpm', 'stock', 'vote', 'council', 'election', 'budget', 'expense', 'track', 'scroll', 'finance']
+const PROJECT_WORDS = ['northline', 'typeforge', 'typeflow', 'inventory', 'voting', 'ssc', 'money', 'treasury', 'typing', 'monkey', 'wpm', 'forge', 'stock', 'vote', 'council', 'election', 'budget', 'expense', 'track', 'scroll', 'finance']
 
 function say(text, topic = null) {
   return { text, topic }
@@ -37,7 +37,7 @@ function elaborateTopic(topic) {
     return `Going deeper on skills: strongest are HTML/CSS (95%), JavaScript (90%), React and Tailwind (88%). He pairs React with Node.js APIs and MySQL or PHP backends depending on the project.`
   }
   if (topic === 'projects') {
-    return `The 5 projects split nicely: TypeFlow and Inventory on the creative-systems side, NorthLine front and center as the showpiece, plus the Money Tracking App and SSC Voting System. Which one should I unpack?`
+    return `The 5 projects split nicely: TypeForge and Inventory on the creative-systems side, NorthLine front and center as the showpiece, plus the Money Tracking App and SSC Voting System. Which one should I unpack?`
   }
   if (topic === 'education') {
     return `More on education: the BSIT program covered web development, databases, and software systems — exactly the mix behind his inventory and voting systems.`
@@ -98,7 +98,7 @@ export function getOatmealReply(rawMessage, context = {}) {
 
   // Projects overview
   if (includesAny(text, ['project', 'portfolio', 'work', 'built', 'showcase'])) {
-    if (!includesAny(text, ['northline', 'typeflow', 'inventory', 'voting', 'ssc', 'money', 'track'])) {
+    if (!includesAny(text, ['northline', 'typeforge', 'typeflow', 'inventory', 'voting', 'ssc', 'money', 'track'])) {
       return say(`He has 5 projects: ${projectList}. Ask me about any one by name, for example "Tell me about NorthLine".`, 'projects')
     }
   }
@@ -108,9 +108,9 @@ export function getOatmealReply(rawMessage, context = {}) {
     const p = projectByIcon('finance')
     return say(`${p.title}: ${p.description} Built with ${p.stack.join(', ')}. Live demo: ${p.link}`, 'finance')
   }
-  if (includesAny(text, ['typeflow', 'typing', 'monkey', 'wpm'])) {
+  if (includesAny(text, ['typeforge', 'typeflow', 'forge', 'typing', 'monkey', 'wpm'])) {
     const p = projectByIcon('typing')
-    return say(`${p.title}: ${p.description} Built with ${p.stack.join(', ')}.`, 'typing')
+    return say(`${p.title}: ${p.description} Built with ${p.stack.join(', ')}. Live demo: ${p.link}`, 'typing')
   }
   if (includesAny(text, ['inventory', 'stock'])) {
     const p = projectByIcon('inventory')

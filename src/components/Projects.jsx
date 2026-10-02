@@ -39,7 +39,7 @@ function ProjectCard({ p, cardRef, index }) {
           <a
             href={p.link}
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
             className="project-link"
             onClick={(e) => e.stopPropagation()}
           >
@@ -121,14 +121,6 @@ export default function Projects() {
     setSpread((s) => !s)
   }
 
-  const spreadDeck = () => {
-    if (spread || animating) return
-    captureFirstPositions()
-    animateOnNextPaint.current = true
-    setAnimating(true)
-    setSpread(true)
-  }
-
   return (
     <section id="projects" className="section section-alt">
       <div className="container reveal">
@@ -152,22 +144,12 @@ export default function Projects() {
               ? 'Dealing the cards…'
               : spread
                 ? 'Normal view — click the button to fan them back into a deck.'
-                : 'Hover the deck to fan it out — click any card to lay them flat.'}
+                : 'Hover the deck to preview the fan — use the button to lay them flat.'}
           </span>
         </div>
 
         <div
           className={spread ? 'projects-grid flip-stage spread' : 'deck-stage deck flip-stage'}
-          onClick={spread ? undefined : spreadDeck}
-          role={spread ? undefined : 'button'}
-          tabIndex={spread ? undefined : 0}
-          aria-label={spread ? undefined : 'Project card deck. Activate to spread cards out.'}
-          onKeyDown={spread ? undefined : (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-              e.preventDefault()
-              spreadDeck()
-            }
-          }}
         >
           {projects.map((p, i) => (
             <ProjectCard

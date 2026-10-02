@@ -1,16 +1,24 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { FaMapMarkerAlt, FaLaptopCode, FaArrowDown, FaEnvelope, FaExpand, FaTimes } from 'react-icons/fa'
 import { profile } from '../data/portfolio.js'
+import HeroShader from './HeroShader.jsx'
 
 const PROFILE_SRC = './images/profile.jpg'
 
 export default function Hero() {
   const [lightboxOpen, setLightboxOpen] = useState(false)
+  const triggerRef = useRef(null)
+  const closeBtnRef = useRef(null)
 
+  const open = useCallback((e) => {
+    triggerRef.current = e?.currentTarget ?? null
+    setLightboxOpen(true)
+  }, [])
   const close = useCallback(() => setLightboxOpen(false), [])
 
   useEffect(() => {
     if (!lightboxOpen) return
+    closeBtnRef.current?.focus()
     const onKey = (e) => {
       if (e.key === 'Escape') close()
     }
@@ -19,14 +27,13 @@ export default function Hero() {
     return () => {
       document.removeEventListener('keydown', onKey)
       document.body.style.overflow = ''
+      triggerRef.current?.focus?.()
     }
   }, [lightboxOpen, close])
 
   return (
     <section id="about" className="hero">
-      <div className="blob blob-1" />
-      <div className="blob blob-2" />
-      <div className="blob blob-3" />
+      <HeroShader />
       <div className="container hero-grid reveal">
         <div>
           <h1>
@@ -43,16 +50,25 @@ export default function Hero() {
             <span><FaLaptopCode /> {profile.tagline}</span>
           </div>
         </div>
-        <div
-          className="profile-card profile-clickable"
-          onClick={() => setLightboxOpen(true)}
-          onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') setLightboxOpen(true) }}
-          role="button"
-          tabIndex={0}
-          aria-label={`Enlarge photo of ${profile.name}`}
-        >
-          <img src={PROFILE_SRC} alt={profile.name} className="profile-card-image" />
-          <span className="profile-hover-hint"><FaExpand /> View photo</span>
+        <div className="profile-card">
+          <button
+            type="button"
+            className="profile-card-trigger"
+            onClick={open}
+            aria-label={`Enlarge photo of ${profile.name}`}
+            aria-haspopup="dialog"
+          >
+            <img
+              src={PROFILE_SRC}
+              alt={profile.name}
+              className="profile-card-image"
+              width="560"
+              height="840"
+              loading="eager"
+              decoding="async"
+            />
+            <span className="profile-hover-hint" aria-hidden="true"><FaExpand /> View photo</span>
+          </button>
           <div className="profile-card-bottom">
             <h3 className="profile-card-name">{profile.name}</h3>
             <p className="profile-card-title">{profile.title}</p>
@@ -66,13 +82,15 @@ export default function Hero() {
       </div>
       {lightboxOpen && (
         <div className="lightbox" onClick={close} role="dialog" aria-modal="true" aria-label="Profile photo enlarged">
-          <button type="button" className="lightbox-close" onClick={close} aria-label="Close enlarged photo">
+          <button ref={closeBtnRef} type="button" className="lightbox-close" onClick={close} aria-label="Close enlarged photo">
             <FaTimes />
           </button>
           <img
             src={PROFILE_SRC}
             alt={`${profile.name} - full size`}
             className="lightbox-img"
+            width="900"
+            height="1200"
             onClick={(e) => e.stopPropagation()}
           />
           <p className="lightbox-caption">Click anywhere or press Esc to close</p>

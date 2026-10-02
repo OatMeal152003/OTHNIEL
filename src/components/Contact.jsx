@@ -1,10 +1,15 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { FaEnvelope, FaGithub, FaFacebookF, FaDownload, FaPaperPlane, FaCopy, FaCheck } from 'react-icons/fa'
 import { contact, profile } from '../data/portfolio.js'
 import ContactForm from './ContactForm.jsx'
 
 function CopyEmailButton() {
   const [copied, setCopied] = useState(false)
+  const timerRef = useRef(null)
+
+  useEffect(() => () => {
+    if (timerRef.current) clearTimeout(timerRef.current)
+  }, [])
 
   const copy = async () => {
     try {
@@ -19,7 +24,8 @@ function CopyEmailButton() {
       document.body.removeChild(ta)
     }
     setCopied(true)
-    setTimeout(() => setCopied(false), 2000)
+    if (timerRef.current) clearTimeout(timerRef.current)
+    timerRef.current = setTimeout(() => setCopied(false), 2000)
   }
 
   return (
@@ -47,20 +53,20 @@ export default function Contact() {
               <a
                 href={`https://mail.google.com/mail/?view=cm&fs=1&to=${contact.email}`}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
               >
                 Open in Gmail
               </a>
               <CopyEmailButton />
             </div>
           </div>
-          <a href={contact.github} target="_blank" rel="noreferrer" className="contact-card">
-            <span className="contact-icon"><FaGithub /></span>
+          <a href={contact.github} target="_blank" rel="noopener noreferrer" className="contact-card">
+            <span className="contact-icon" aria-hidden="true"><FaGithub /></span>
             <strong>GitHub</strong>
             <small>{contact.githubLabel}</small>
           </a>
-          <a href={contact.facebook} target="_blank" rel="noreferrer" className="contact-card">
-            <span className="contact-icon"><FaFacebookF /></span>
+          <a href={contact.facebook} target="_blank" rel="noopener noreferrer" className="contact-card">
+            <span className="contact-icon" aria-hidden="true"><FaFacebookF /></span>
             <strong>Facebook</strong>
             <small>{contact.facebookLabel}</small>
           </a>
@@ -72,7 +78,7 @@ export default function Contact() {
           <a
             href={`https://mail.google.com/mail/?view=cm&fs=1&to=${contact.email}&su=${encodeURIComponent(`Freelance project for ${profile.name}`)}`}
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
             className="btn btn-ghost"
           >
             <FaPaperPlane /> Say Hello via Gmail
