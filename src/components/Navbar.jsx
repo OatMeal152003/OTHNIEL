@@ -9,7 +9,7 @@ const links = [
   { id: 'contact', label: 'Contact' }
 ]
 
-export default function Navbar({ dark, onToggle }) {
+export default function Navbar({ dark, onToggle, onLogoClick }) {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
 
@@ -19,10 +19,17 @@ export default function Navbar({ dark, onToggle }) {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
+  const onLogo = (e) => {
+    e.preventDefault()
+    window.scrollTo(0, 0)
+    setOpen(false)
+    if (onLogoClick) onLogoClick()
+  }
+
   return (
     <header className={`nav ${scrolled ? 'nav-scrolled' : ''}`}>
       <div className="nav-inner">
-        <a href="#about" className="logo">
+        <a href="#about" className="logo" onClick={onLogo} aria-label="Replay site intro">
           <img src="./images/OS_logo.png" alt="Othniel.dev logo" width="60" height="45" className="logo-img" />
           <span className="logo-text">Othniel.dev</span>
         </a>

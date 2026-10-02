@@ -489,7 +489,28 @@ section { scroll-margin-top: 80px; }
 .section-sub { color: var(--muted); font-size: 16px; max-width: 640px; line-height: 1.6; }
 
 /* Skills */
-.skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; margin-top: 32px; }
+/* Skills marquee */
+.skills-marquee { display: flex; flex-direction: column; gap: 16px; margin-top: 32px; }
+.marquee {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 32s linear infinite;
+}
+.marquee-track.reverse { animation-direction: reverse; }
+.marquee:hover .marquee-track,
+.marquee:focus-within .marquee-track { animation-play-state: paused; }
+.marquee-track > .skill-card { flex: 0 0 240px; margin-right: 16px; }
+@keyframes marquee { to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) {
+  .marquee { overflow: visible; -webkit-mask-image: none; mask-image: none; }
+  .marquee-track { animation: none; flex-wrap: wrap; width: auto; gap: 16px; }
+  .marquee-track > .skill-card { flex: 1 1 220px; margin-right: 0; }
+}
 .skill-card {
   background: var(--card);
   border-radius: var(--radius);
@@ -1011,12 +1032,44 @@ section { scroll-margin-top: 80px; }
   .edu-card { padding: 22px 20px; gap: 14px; }
   .contact-form { padding: 22px 18px; }
   .projects-grid { grid-template-columns: 1fr; }
-  .skills-grid { grid-template-columns: 1fr; }
+  .marquee-track > .skill-card { flex-basis: 200px; }
   .contact-grid { grid-template-columns: 1fr; }
   .footer-inner { flex-direction: column; align-items: flex-start; }
   .oatmeal-fab { right: 14px; bottom: 14px; }
   .oatmeal-panel { right: 12px; bottom: 12px; }
   .lightbox { padding: 20px 12px; }
+}
+
+/* ============ Logo intro overlay ============ */
+.intro-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  background: #000000;
+  cursor: pointer;
+  transition: opacity 0.45s ease;
+}
+.intro-overlay.fading { opacity: 0; pointer-events: none; }
+.intro-video {
+  width: min(1100px, 96vw);
+  max-height: 86vh;
+  object-fit: contain;
+  mix-blend-mode: screen;
+  -webkit-mask-image: radial-gradient(ellipse 68% 68% at 50% 50%, black 60%, transparent 78%);
+  mask-image: radial-gradient(ellipse 68% 68% at 50% 50%, black 60%, transparent 78%);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+.intro-video.ready { opacity: 1; }
+.intro-skip {
+  color: #a3a3a3;
+  font-size: 13px;
+  letter-spacing: 0.4px;
 }
 
 /* ============ Dark mode ============ */

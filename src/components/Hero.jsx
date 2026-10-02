@@ -74,7 +74,7 @@ export default function Hero() {
             <p className="profile-card-title">{profile.title}</p>
             <div className="profile-card-stats">
               <div><strong>5</strong><span>Projects</span></div>
-              <div><strong>9</strong><span>Skills</span></div>
+              <div><strong>16</strong><span>Skills</span></div>
               <div><strong>BSIT</strong><span>Degree</span></div>
             </div>
           </div>

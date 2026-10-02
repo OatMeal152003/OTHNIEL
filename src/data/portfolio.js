@@ -15,7 +15,14 @@ export const skills = [
   { name: 'Python', icon: 'python', level: 75 },
   { name: 'HTML / CSS', icon: 'htmlcss', level: 95 },
   { name: 'Tailwind CSS', icon: 'tailwind', level: 88 },
-  { name: 'Git / GitHub', icon: 'git', level: 85 }
+  { name: 'Git / GitHub', icon: 'git', level: 85 },
+  { name: 'Claude Code', icon: 'claude', level: 88 },
+  { name: 'OpenAI', icon: 'openai', level: 85 },
+  { name: 'OpenCode', icon: 'opencode', level: 80 },
+  { name: 'Omniroute', icon: 'omniroute', level: 78 },
+  { name: 'Graphics Designing', icon: 'design', level: 90 },
+  { name: 'Laravel', icon: 'laravel', level: 75 },
+  { name: 'PHP', icon: 'php', level: 78 }
 ]
 
 export const projects = [
