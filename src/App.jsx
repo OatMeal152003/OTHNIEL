@@ -9,7 +9,14 @@ import Footer from './components/Footer.jsx'
 import Assistant from './components/Assistant.jsx'
 import LogoIntro from './components/LogoIntro.jsx'
 import { useReveal } from './hooks/useReveal.js'
-import './App.css'
+import './styles/01-base.css'
+import './styles/02-hero.css'
+import './styles/03-lightbox-sections.css'
+import './styles/04-skills-projects-deck.css'
+import './styles/05-education-contact-footer.css'
+import './styles/06-assistant.css'
+import './styles/07-responsive-intro.css'
+import './styles/08-dark-a11y.css'
 
 export default function App() {
   useReveal()

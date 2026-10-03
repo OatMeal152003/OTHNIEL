@@ -142,7 +142,7 @@ export function getOatmealReply(rawMessage, context = {}) {
 
   // Hiring / rates / availability
   if (includesAny(text, ['hire', 'freelance', 'available', 'rate', 'price', 'cost', 'commission'])) {
-    return say(`${profile.availability} for websites, web apps, inventory or voting systems, and branding work. Email ${contact.email} with your project details for a quote.`, 'hire')
+    return say(`${profile.availability} — open for websites, web apps, inventory or voting systems, and branding work. Email ${contact.email} with your project details for a quote.`, 'hire')
   }
 
   // Location

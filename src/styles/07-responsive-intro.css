@@ -1,0 +1,84 @@
+
+/* Responsive */
+@media (max-width: 800px) {
+  .hero { padding: 112px 0 60px; }
+  .section { padding: 64px 0; }
+  .hero-grid { grid-template-columns: 1fr; gap: 32px; }
+  .hero h1 { font-size: 36px; }
+  .section-title { font-size: 28px; }
+  .profile-card { margin-inline: auto; }
+  .theme-toggle { width: 44px; height: 44px; }
+  .nav-toggle { min-width: 44px; min-height: 44px; }
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 62px; right: 16px;
+    background: #0a0a0a;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 16px;
+    border-radius: 14px;
+    border: 1px solid #333333;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55);
+    min-width: 200px;
+  }
+  .nav-links.open { display: flex; }
+  .nav-toggle { display: block; }
+  .edu-card > div { min-width: 0; }
+}
+
+@media (max-width: 520px) {
+  html, body { overflow-x: clip; }
+  .container { padding: 0 20px; }
+  .hero { padding: 104px 0 52px; }
+  .section { padding: 56px 0; }
+  .hero h1 { font-size: 32px; }
+  .hero h2 { font-size: 18px; }
+  .lead { font-size: 16px; }
+  .section-title { font-size: 26px; }
+  .section-sub { font-size: 15px; }
+  .hero-actions { flex-direction: column; align-items: stretch; }
+  .hero-actions .btn { justify-content: center; }
+  .hero-meta { gap: 10px; font-size: 13px; }
+  .edu-card { padding: 22px 20px; gap: 14px; }
+  .contact-form { padding: 22px 18px; }
+  .projects-grid { grid-template-columns: 1fr; }
+  .marquee-track > .skill-card { flex-basis: 200px; }
+  .contact-grid { grid-template-columns: 1fr; }
+  .footer-inner { flex-direction: column; align-items: flex-start; }
+  .oatmeal-fab { right: 14px; bottom: 14px; }
+  .oatmeal-panel { right: 12px; bottom: 12px; }
+  .lightbox { padding: 20px 12px; }
+}
+
+/* ============ Logo intro overlay ============ */
+.intro-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  background: #000000;
+  cursor: pointer;
+  transition: opacity 0.45s ease;
+}
+.intro-overlay.fading { opacity: 0; pointer-events: none; }
+.intro-video {
+  width: min(1100px, 96vw);
+  max-height: 86vh;
+  object-fit: contain;
+  mix-blend-mode: screen;
+  -webkit-mask-image: radial-gradient(ellipse 68% 68% at 50% 50%, black 60%, transparent 78%);
+  mask-image: radial-gradient(ellipse 68% 68% at 50% 50%, black 60%, transparent 78%);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+.intro-video.ready { opacity: 1; }
+.intro-skip {
+  color: #a3a3a3;
+  font-size: 13px;
+  letter-spacing: 0.4px;
+}

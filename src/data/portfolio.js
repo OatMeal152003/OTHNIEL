@@ -3,7 +3,8 @@ export const profile = {
   title: 'Full-Stack Web Developer & Creative Designer',
   tagline: 'I build responsive websites, web applications, and database-driven systems with a creative twist.',
   bio: "I'm Othniel Sulpico, a web developer focused on building responsive websites, web applications, and database-driven systems. I also have a passion for graphic design, branding, and digital content, allowing me to approach projects from both a technical and creative perspective.",
-  location: 'Philippines'
+  location: 'Philippines',
+  availability: 'Available for freelance projects'
 }
 
 export const skills = [

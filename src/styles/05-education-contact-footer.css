@@ -1,0 +1,96 @@
+
+/* Education */
+.edu-card {
+  display: flex; gap: 20px;
+  background: white;
+  border-radius: var(--radius);
+  padding: 28px;
+  margin-top: 28px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+  border: 1px solid var(--line);
+  border-left: 5px solid var(--maroon);
+}
+.edu-icon-box { width: 56px; height: 56px; flex-shrink: 0; display: grid; place-items: center; border-radius: 14px; background: linear-gradient(135deg, var(--maroon-dark), var(--maroon)); color: var(--gold-light); font-size: 24px; }
+.edu-card h3 { margin: 0; color: var(--maroon-deep); }
+.edu-school { color: var(--maroon); font-weight: 700; margin: 6px 0; }
+.edu-details { color: var(--muted); margin: 0; line-height: 1.6; }
+
+/* Contact */
+.contact-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; margin-top: 28px; }
+.contact-card {
+  background: white;
+  padding: 22px;
+  border-radius: var(--radius);
+  text-decoration: none;
+  color: var(--charcoal);
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.07);
+  border: 1px solid var(--line);
+  transition: transform 0.25s, border-color 0.25s;
+  display: flex; flex-direction: column; gap: 6px;
+  word-break: break-word;
+}
+.contact-card:hover { transform: translateY(-4px); border-color: var(--maroon); }
+.contact-icon { width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; font-size: 20px; color: white; background: linear-gradient(135deg, var(--maroon-dark), var(--maroon)); }
+.contact-card strong { font-size: 15px; }
+.contact-card small { color: var(--muted); font-size: 13px; }
+.contact-actions { display: flex; gap: 14px; margin-top: 26px; flex-wrap: wrap; }
+.resume-note { color: var(--muted); font-size: 13px; margin-top: 16px; }
+
+/* Contact form + copy-email */
+.contact-card-static { cursor: default; }
+.contact-card-static:hover { transform: none; border-color: var(--line); }
+.contact-card-actions { display: flex; gap: 12px; align-items: center; margin-top: 8px; }
+.contact-card-actions a { color: var(--maroon); font-weight: 700; font-size: 13px; }
+.copy-email-btn {
+  border: 1px solid var(--maroon);
+  background: white;
+  color: var(--maroon-dark);
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.copy-email-btn:hover { background: var(--maroon-dark); color: white; }
+.contact-form {
+  margin-top: 30px;
+  background: white;
+  border: 1px solid var(--line);
+  border-top: 5px solid var(--maroon);
+  border-radius: var(--radius);
+  padding: 26px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-width: 640px;
+}
+.contact-form h3 { margin: 0; color: var(--maroon-deep); font-size: 20px; }
+.contact-form label { display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600; color: var(--charcoal); }
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form textarea {
+  padding: 11px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  font-size: 14px;
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--cream);
+  color: var(--charcoal);
+}
+.contact-form input:focus,
+.contact-form textarea:focus { outline: 2px solid var(--maroon); border-color: var(--maroon); background: white; }
+.contact-form textarea { resize: vertical; }
+.contact-form .btn { align-self: flex-start; }
+.contact-form .btn:disabled { opacity: 0.65; cursor: wait; }
+.form-note { display: flex; align-items: center; gap: 8px; font-size: 14px; margin: 4px 0 0; }
+.form-success { color: #000000; }
+.form-error { color: var(--maroon); }
+
+/* Footer */
+.footer { padding: 26px 0; background: #000000; color: #ffffff; border-top: 3px solid #000000; }
+.footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; font-size: 14px; }
+.footer a { display: inline-flex; align-items: center; gap: 6px; color: var(--gold-light); text-decoration: none; font-weight: 600; }
