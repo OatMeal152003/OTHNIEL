@@ -1,5 +1,9 @@
 
 /* Responsive */
+@media (max-width: 1000px) {
+  .contact-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+}
+
 @media (max-width: 800px) {
   .hero { padding: 112px 0 60px; }
   .section { padding: 64px 0; }

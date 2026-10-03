@@ -140,7 +140,7 @@ export function getOatmealReply(rawMessage, context = {}) {
 
   // Resume
   if (includesAny(text, ['resume', 'cv', 'download'])) {
-    return say(`Use the "Download Resume / CV" button in the Contact section (resume.pdf). Want me to point you there? Scroll to Contact or email ${contact.email} and he can send the latest copy.`, 'contact')
+    return say(`Othniel shares his latest resume on request — email ${contact.email} and he will send a copy, along with a quote for your project.`, 'contact')
   }
 
   // Hiring / rates / availability

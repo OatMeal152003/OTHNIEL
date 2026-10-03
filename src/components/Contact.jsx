@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { FaEnvelope, FaGithub, FaFacebookF, FaLinkedinIn, FaInstagram, FaDownload, FaPaperPlane, FaCopy, FaCheck } from 'react-icons/fa'
+import { FaEnvelope, FaGithub, FaFacebookF, FaLinkedinIn, FaInstagram, FaPaperPlane, FaCopy, FaCheck } from 'react-icons/fa'
 import { contact, profile } from '../data/portfolio.js'
 import ContactForm from './ContactForm.jsx'
 
@@ -82,9 +82,6 @@ export default function Contact() {
           </a>
         </div>
         <div className="contact-actions">
-          <a href={contact.resumePath} download className="btn btn-primary">
-            <FaDownload /> Download Resume / CV
-          </a>
           <a
             href={`https://mail.google.com/mail/?view=cm&fs=1&to=${contact.email}&su=${encodeURIComponent(`Freelance project for ${profile.name}`)}`}
             target="_blank"

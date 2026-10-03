@@ -16,10 +16,10 @@
 .edu-details { color: var(--muted); margin: 0; line-height: 1.6; }
 
 /* Contact */
-.contact-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; margin-top: 28px; }
+.contact-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-top: 28px; }
 .contact-card {
   background: white;
-  padding: 22px;
+  padding: 18px;
   border-radius: var(--radius);
   text-decoration: none;
   color: var(--charcoal);
@@ -38,8 +38,7 @@
 
 /* Contact form + copy-email */
 .contact-card-static { cursor: default; }
-.contact-card-static:hover { transform: none; border-color: var(--line); }
-.contact-card-actions { display: flex; gap: 12px; align-items: center; margin-top: 8px; }
+.contact-card-actions { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin-top: 8px; }
 .contact-card-actions a { color: var(--maroon); font-weight: 700; font-size: 13px; }
 .copy-email-btn {
   border: 1px solid var(--maroon);
