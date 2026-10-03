@@ -155,5 +155,9 @@ export const contact = {
   githubLabel: 'OatMeal152003',
   facebook: 'https://www.facebook.com/othniel.sulpico',
   facebookLabel: 'othniel.sulpico',
+  linkedin: 'https://www.linkedin.com/in/othniel-sulpico-587a68440/',
+  linkedinLabel: 'Othniel Sulpico',
+  instagram: 'https://www.instagram.com/mr.oat_meal/',
+  instagramLabel: 'mr.oat_meal',
   resumePath: './resume.pdf'
 }

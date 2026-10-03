@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { FaEnvelope, FaGithub, FaFacebookF, FaDownload, FaPaperPlane, FaCopy, FaCheck } from 'react-icons/fa'
+import { FaEnvelope, FaGithub, FaFacebookF, FaLinkedinIn, FaInstagram, FaDownload, FaPaperPlane, FaCopy, FaCheck } from 'react-icons/fa'
 import { contact, profile } from '../data/portfolio.js'
 import ContactForm from './ContactForm.jsx'
 
@@ -69,6 +69,16 @@ export default function Contact() {
             <span className="contact-icon" aria-hidden="true"><FaFacebookF /></span>
             <strong>Facebook</strong>
             <small>{contact.facebookLabel}</small>
+          </a>
+          <a href={contact.linkedin} target="_blank" rel="noopener noreferrer" className="contact-card">
+            <span className="contact-icon" aria-hidden="true"><FaLinkedinIn /></span>
+            <strong>LinkedIn</strong>
+            <small>{contact.linkedinLabel}</small>
+          </a>
+          <a href={contact.instagram} target="_blank" rel="noopener noreferrer" className="contact-card">
+            <span className="contact-icon" aria-hidden="true"><FaInstagram /></span>
+            <strong>Instagram</strong>
+            <small>{contact.instagramLabel}</small>
           </a>
         </div>
         <div className="contact-actions">

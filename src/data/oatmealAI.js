@@ -24,7 +24,7 @@ function systemPrompt() {
     'Services (scrollable grayscale panels 01-07): Web Development, UI/UX Design, Frontend Development, Backend Development, Database & Systems, Branding & Creative Design, Digital Solutions (incl. documented capstone builds). It closes on a black capstone finale panel.',
     ...projects.map((p) => `- ${p.title}: ${p.description} Stack: ${p.stack.join(', ')}.${p.link ? ` Link: ${p.link}` : ''}`),
     `Education: ${education.degree}, ${education.school}. ${education.details}`,
-    `Contact: email ${contact.email}, GitHub ${contact.github} (${contact.githubLabel}), Facebook/mail ${contact.facebookLabel}. Resume: Contact-section download button.`,
+    `Contact: email ${contact.email}, GitHub ${contact.github} (${contact.githubLabel}), Facebook ${contact.facebook} (${contact.facebookLabel}), LinkedIn ${contact.linkedin} (${contact.linkedinLabel}), Instagram ${contact.instagram} (${contact.instagramLabel}). Resume: Contact-section download button.`,
     'If asked something you cannot know (e.g. exact rates), say Othniel replies by email and give his email.'
   ].join('\n')
 }

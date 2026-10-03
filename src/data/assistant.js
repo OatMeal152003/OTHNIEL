@@ -134,8 +134,8 @@ export function getOatmealReply(rawMessage, context = {}) {
   }
 
   // Contact
-  if (includesAny(text, ['contact', 'email', 'mail', 'reach', 'github', 'facebook', 'social', 'link'])) {
-    return say(`You can reach ${profile.name} at ${contact.email} (there is a copy-email button and a project inquiry form right on this page). GitHub: ${contact.github} (${contact.githubLabel}). Facebook: ${contact.facebook} (${contact.facebookLabel}).`, 'contact')
+  if (includesAny(text, ['contact', 'email', 'mail', 'reach', 'github', 'facebook', 'linkedin', 'instagram', 'social', 'link'])) {
+    return say(`You can reach ${profile.name} at ${contact.email} (there is a copy-email button and a project inquiry form right on this page). GitHub: ${contact.github} (${contact.githubLabel}). Facebook: ${contact.facebook} (${contact.facebookLabel}). LinkedIn: ${contact.linkedin} (${contact.linkedinLabel}). Instagram: ${contact.instagram} (${contact.instagramLabel}).`, 'contact')
   }
 
   // Resume
