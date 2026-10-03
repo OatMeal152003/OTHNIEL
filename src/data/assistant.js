@@ -34,7 +34,10 @@ function elaborateTopic(topic) {
     return `${p.title} in more detail:${extra} Built with ${p.stack.join(', ')}.${p.link ? ` Try it live: ${p.link}` : ' Code is available on request — email ' + contact.email + '.'}`
   }
   if (topic === 'skills') {
-    return `Going deeper on skills: strongest are HTML/CSS (95%), JavaScript (90%), React and Tailwind (88%). He pairs React with Node.js APIs and MySQL or PHP backends depending on the project.`
+    return `Going deeper on skills: core strengths are HTML/CSS, JavaScript, React and Tailwind CSS. He pairs React with Node.js APIs and MySQL or PHP backends depending on the project, and also works with Expo, Firebase, Supabase, and Docker.`
+  }
+  if (topic === 'services') {
+    return `The 7 Services panels at a glance: end-to-end websites, Figma UI/UX, React frontends, Node.js backends, MySQL systems like inventory and voting, Canva and Figma branding, and digital solutions from Firebase apps to documented capstone builds with defense prep. It closes on a black capstone finale panel — or email ${contact.email} with what you need for a quote.`
   }
   if (topic === 'projects') {
     return `The 5 projects split nicely: TypeForge and Inventory on the creative-systems side, NorthLine front and center as the showpiece, plus the Money Tracking App and SSC Voting System. Which one should I unpack?`
@@ -84,15 +87,15 @@ export function getOatmealReply(rawMessage, context = {}) {
   }
 
   // Title / what does he do / services
-  if (!includesAny(text, PROJECT_WORDS) && includesAny(text, ['what does', 'what can', 'services', 'offer', 'do you do', 'title', 'role', 'job', 'work'])) {
-    return say(`${profile.name} builds responsive websites, web applications, and database-driven systems such as inventory and voting systems, plus branding and digital content. ${profile.availability}.`, 'about')
+  if (!includesAny(text, PROJECT_WORDS) && includesAny(text, ['what does', 'what can', 'service', 'services', 'offer', 'do you do', 'title', 'role', 'job', 'work'])) {
+    return say(`${profile.name} offers 7 services: web development, UI/UX design, frontend and backend development, database and systems, branding and creative design, plus digital solutions including capstone builds. Scroll through the Services panels on this page, or email ${contact.email} for a quote.`, 'services')
   }
 
   // Skills
   if (includesAny(text, ['skill', 'tech', 'stack', 'tools', 'language', 'framework', 'proficient'])) {
     // Specific skill check
     const found = skills.find((s) => text.includes(s.name.toLowerCase().split(' ')[0]))
-    if (found) return say(`Yes — ${profile.name} lists ${found.name} at ${found.level}% proficiency. Full toolbox: ${skillList}.`, 'skills')
+    if (found) return say(`Yes — ${found.name} is in ${profile.name}'s toolbox. Full toolbox: ${skillList}.`, 'skills')
     return say(`${profile.name}'s toolbox: ${skillList}. Strongest areas are HTML/CSS, JavaScript, React, and Tailwind CSS.`, 'skills')
   }
 
@@ -225,6 +228,7 @@ export function getOatmealReply(rawMessage, context = {}) {
 
 export const oatmealSuggestions = [
   'What are his skills?',
+  'What services does he offer?',
   'List his projects',
   'Tell me about NorthLine',
   'His education?',

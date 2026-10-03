@@ -21,6 +21,7 @@ function systemPrompt() {
     `Bio: ${profile.bio}`,
     `Skills: ${skillList}.`,
     `Projects: ${projectList}.`,
+    'Services (scrollable grayscale panels 01-07): Web Development, UI/UX Design, Frontend Development, Backend Development, Database & Systems, Branding & Creative Design, Digital Solutions (incl. documented capstone builds). It closes on a black capstone finale panel.',
     ...projects.map((p) => `- ${p.title}: ${p.description} Stack: ${p.stack.join(', ')}.${p.link ? ` Link: ${p.link}` : ''}`),
     `Education: ${education.degree}, ${education.school}. ${education.details}`,
     `Contact: email ${contact.email}, GitHub ${contact.github} (${contact.githubLabel}), Facebook/mail ${contact.facebookLabel}. Resume: Contact-section download button.`,

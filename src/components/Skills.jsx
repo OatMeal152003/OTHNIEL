@@ -1,5 +1,5 @@
-import { FaJs, FaReact, FaNodeJs, FaPython, FaHtml5, FaGitAlt, FaCss3Alt, FaCode, FaTerminal, FaRoute, FaPalette, FaBrain } from 'react-icons/fa'
-import { SiTypescript, SiNextdotjs, SiTailwindcss, SiPhp, SiLaravel } from 'react-icons/si'
+import { FaJs, FaReact, FaNodeJs, FaPython, FaHtml5, FaGitAlt, FaCss3Alt, FaCode, FaTerminal, FaRoute, FaPalette, FaBrain, FaPaintBrush, FaServer } from 'react-icons/fa'
+import { SiTypescript, SiNextdotjs, SiTailwindcss, SiPhp, SiLaravel, SiExpo, SiMysql, SiFigma, SiFirebase, SiSupabase, SiVercel, SiPostman, SiDocker } from 'react-icons/si'
 import { skills } from '../data/portfolio.js'
 
 const iconMap = {
@@ -18,7 +18,17 @@ const iconMap = {
   omniroute: FaRoute,
   design: FaPalette,
   laravel: SiLaravel,
-  php: SiPhp
+  php: SiPhp,
+  mysql: SiMysql,
+  expo: SiExpo,
+  canva: FaPaintBrush,
+  figma: SiFigma,
+  firebase: SiFirebase,
+  supabase: SiSupabase,
+  vercel: SiVercel,
+  postman: SiPostman,
+  docker: SiDocker,
+  restapi: FaServer
 }
 
 function SkillCard({ skill, hidden }) {
@@ -29,10 +39,6 @@ function SkillCard({ skill, hidden }) {
         <span className="skill-icon" aria-hidden="true"><Icon /></span>
         <strong>{skill.name}</strong>
       </div>
-      <div className="bar" role="img" aria-label={`${skill.name} proficiency ${skill.level} percent`}>
-        <div className="bar-fill" style={{ width: `${skill.level}%` }} />
-      </div>
-      <small>{skill.level}% proficient</small>
     </div>
   )
 }
@@ -60,8 +66,8 @@ export default function Skills() {
         <h2 className="section-title">Skills and Technologies</h2>
         <p className="section-sub">Languages, frameworks, and tools I use to design and build fast, reliable web experiences.</p>
         <div className="skills-marquee">
-          <MarqueeRow items={skills.slice(0, 8)} />
-          <MarqueeRow items={skills.slice(8)} reverse />
+          <MarqueeRow items={skills.slice(0, 13)} />
+          <MarqueeRow items={skills.slice(13)} reverse />
         </div>
       </div>
     </section>

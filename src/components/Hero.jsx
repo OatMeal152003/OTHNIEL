@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { FaMapMarkerAlt, FaLaptopCode, FaArrowDown, FaEnvelope, FaExpand, FaTimes } from 'react-icons/fa'
-import { profile } from '../data/portfolio.js'
+import { profile, skills } from '../data/portfolio.js'
 import HeroShader from './HeroShader.jsx'
 
-const PROFILE_SRC = './images/profile.jpg'
+const PROFILE_SRC = './images/Real.png'
 
 export default function Hero() {
   const [lightboxOpen, setLightboxOpen] = useState(false)
@@ -74,7 +74,7 @@ export default function Hero() {
             <p className="profile-card-title">{profile.title}</p>
             <div className="profile-card-stats">
               <div><strong>5</strong><span>Projects</span></div>
-              <div><strong>16</strong><span>Skills</span></div>
+              <div><strong>{skills.length}</strong><span>Skills</span></div>
               <div><strong>BSIT</strong><span>Degree</span></div>
             </div>
           </div>

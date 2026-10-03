@@ -16,7 +16,8 @@
 
 html { scroll-behavior: smooth; }
 body { margin: 0; }
-main { overflow-x: hidden; position: relative; }
+/* overflow-x: clip (not hidden) — hidden would make main a scroll container and break position: sticky descendants */
+main { overflow-x: clip; position: relative; }
 
 /* Site-wide subtle maroon diamond pattern + warm vignette */
 body::before {

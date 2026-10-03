@@ -35,7 +35,6 @@ body.dark-mode .section { background-color: #000000; }
 body.dark-mode .section-alt { background-color: #0a0a0a; }
 body.dark-mode .section-title { color: #ffffff; }
 body.dark-mode .skill-card { background: var(--card); border-color: var(--line); box-shadow: 0 6px 22px rgba(0, 0, 0, 0.4); }
-body.dark-mode .bar { background: #262626; }
 body.dark-mode .project-card { background: var(--card); border-color: var(--line); box-shadow: 0 8px 28px rgba(0, 0, 0, 0.45); }
 body.dark-mode .project-body h3 { color: #ffffff; }
 body.dark-mode .project-body p { color: #d4d4d4; }

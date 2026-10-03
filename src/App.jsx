@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from 'react'
 import Navbar from './components/Navbar.jsx'
 import Hero from './components/Hero.jsx'
 import Skills from './components/Skills.jsx'
+import Services from './components/Services.jsx'
 import Projects from './components/Projects.jsx'
 import Education from './components/Education.jsx'
 import Contact from './components/Contact.jsx'
@@ -17,6 +18,7 @@ import './styles/05-education-contact-footer.css'
 import './styles/06-assistant.css'
 import './styles/07-responsive-intro.css'
 import './styles/08-dark-a11y.css'
+import './styles/09-services.css'
 
 export default function App() {
   useReveal()
@@ -52,6 +54,7 @@ export default function App() {
       <main id="main-content">
         <Hero />
         <Skills />
+        <Services />
         <Projects />
         <Education />
         <Contact />

@@ -8,22 +8,91 @@ export const profile = {
 }
 
 export const skills = [
-  { name: 'JavaScript', icon: 'javascript', level: 90 },
-  { name: 'TypeScript', icon: 'typescript', level: 80 },
-  { name: 'React', icon: 'react', level: 88 },
-  { name: 'Next.js', icon: 'nextjs', level: 80 },
-  { name: 'Node.js', icon: 'nodejs', level: 82 },
-  { name: 'Python', icon: 'python', level: 75 },
-  { name: 'HTML / CSS', icon: 'htmlcss', level: 95 },
-  { name: 'Tailwind CSS', icon: 'tailwind', level: 88 },
-  { name: 'Git / GitHub', icon: 'git', level: 85 },
-  { name: 'Claude Code', icon: 'claude', level: 88 },
-  { name: 'OpenAI', icon: 'openai', level: 85 },
-  { name: 'OpenCode', icon: 'opencode', level: 80 },
-  { name: 'Omniroute', icon: 'omniroute', level: 78 },
-  { name: 'Graphics Designing', icon: 'design', level: 90 },
-  { name: 'Laravel', icon: 'laravel', level: 75 },
-  { name: 'PHP', icon: 'php', level: 78 }
+  { name: 'JavaScript', icon: 'javascript' },
+  { name: 'TypeScript', icon: 'typescript' },
+  { name: 'React', icon: 'react' },
+  { name: 'Next.js', icon: 'nextjs' },
+  { name: 'Node.js', icon: 'nodejs' },
+  { name: 'Python', icon: 'python' },
+  { name: 'HTML / CSS', icon: 'htmlcss' },
+  { name: 'Tailwind CSS', icon: 'tailwind' },
+  { name: 'Git / GitHub', icon: 'git' },
+  { name: 'Claude Code', icon: 'claude' },
+  { name: 'OpenAI', icon: 'openai' },
+  { name: 'OpenCode', icon: 'opencode' },
+  { name: 'Omniroute', icon: 'omniroute' },
+  { name: 'Graphics Designing', icon: 'design' },
+  { name: 'Laravel', icon: 'laravel' },
+  { name: 'PHP', icon: 'php' },
+  { name: 'MySQL', icon: 'mysql' },
+  { name: 'Expo', icon: 'expo' },
+  { name: 'Canva', icon: 'canva' },
+  { name: 'Figma', icon: 'figma' },
+  { name: 'Firebase', icon: 'firebase' },
+  { name: 'Supabase', icon: 'supabase' },
+  { name: 'Vercel', icon: 'vercel' },
+  { name: 'Postman', icon: 'postman' },
+  { name: 'Docker', icon: 'docker' },
+  { name: 'REST API', icon: 'restapi' }
+]
+
+export const services = [
+  {
+    title: 'Web Development',
+    eyebrow: 'End-to-end websites',
+    description:
+      'Complete websites — from landing pages to business sites. Designed, built, deployed, and documented.',
+    tags: ['Business Sites', 'Landing Pages', 'SEO'],
+    theme: 'dark'
+  },
+  {
+    title: 'UI/UX Design',
+    eyebrow: 'Interfaces & experience',
+    description:
+      'Clean, usable interfaces prototyped in Figma — layouts, flows, and design systems developers can actually build.',
+    tags: ['Figma', 'Prototypes', 'Design Systems'],
+    theme: 'dark'
+  },
+  {
+    title: 'Frontend Development',
+    eyebrow: 'Interaction & motion',
+    description:
+      'Responsive React interfaces with smooth motion and real state — fast, accessible, and pixel-faithful.',
+    tags: ['React', 'Responsive', 'Performance'],
+    theme: 'dark'
+  },
+  {
+    title: 'Backend Development',
+    eyebrow: 'Servers, APIs & logic',
+    description:
+      'REST APIs and application backends with Node.js — auth, validation, and business logic that holds up.',
+    tags: ['REST', 'Node.js', 'Auth'],
+    theme: 'light'
+  },
+  {
+    title: 'Database & Systems',
+    eyebrow: 'Data that stays correct',
+    description:
+      'MySQL-backed systems — inventory, voting, enrollment, and records — with reports and admin controls.',
+    tags: ['MySQL', 'Reports', 'Admin Panel'],
+    theme: 'light'
+  },
+  {
+    title: 'Branding & Creative Design',
+    eyebrow: 'Identity & content',
+    description:
+      'Logos, social kits, and page visuals in Canva and Figma — branding that matches the build.',
+    tags: ['Logos', 'Social Kits', 'Canva'],
+    theme: 'light'
+  },
+  {
+    title: 'Digital Solutions',
+    eyebrow: 'Systems for ambitious ideas',
+    description:
+      'Firebase and Supabase apps, automations, and capstone builds — documented, demo-ready, and built with you.',
+    tags: ['Firebase', 'Supabase', 'Capstone Builds'],
+    theme: 'light'
+  }
 ]
 
 export const projects = [
