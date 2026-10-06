@@ -128,7 +128,7 @@ export const projects = [
     link: 'https://typeforge.gamer.gd',
     linkLabel: 'Live Demo',
     icon: 'typing',
-    category: 'apps'
+    category: 'websites'
   },
   {
     title: 'Inventory Management System',
