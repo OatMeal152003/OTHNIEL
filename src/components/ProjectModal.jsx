@@ -1,5 +1,38 @@
-import { useEffect, useRef } from 'react'
+import { Suspense, lazy, useEffect, useRef, useState } from 'react'
 import { FaTimes, FaExternalLinkAlt, FaArrowLeft } from 'react-icons/fa'
+
+const CircularGallery = lazy(() => import('./CircularGallery.jsx'))
+
+function ModalGallery({ projects }) {
+  const [failed, setFailed] = useState(false)
+  const [reduceMotion] = useState(() =>
+    typeof window !== 'undefined' &&
+    typeof window.matchMedia === 'function' &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  )
+  if (failed || reduceMotion || projects.length === 0) return null
+  const items = projects.map((p) => ({
+    image: p.image,
+    text: p.galleryLabel || p.title.split(' — ')[0]
+  }))
+  return (
+    <div className="modal-gallery">
+      <Suspense fallback={<div className="modal-gallery-loading" aria-hidden="true" />}>
+        <CircularGallery
+          items={items}
+          bend={2}
+          textColor="#ffffff"
+          borderRadius={0.08}
+          font="bold 24px Orbitron"
+          scrollSpeed={1.5}
+          scrollEase={0.05}
+          onError={() => setFailed(true)}
+        />
+      </Suspense>
+      <p className="modal-gallery-hint">Drag or scroll to spin the gallery — pick a project below.</p>
+    </div>
+  )
+}
 
 export default function ProjectModal({ category, projects, selected, onSelect, onClose }) {
   const panelRef = useRef(null)
@@ -48,7 +81,7 @@ export default function ProjectModal({ category, projects, selected, onSelect, o
     >
       <div
         ref={panelRef}
-        className="modal-panel"
+        className={`modal-panel ${!selected ? 'modal-panel-wide' : ''}`}
         role="dialog"
         aria-modal="true"
         aria-label={selected ? selected.title : `${category.label} projects`}
@@ -85,19 +118,22 @@ export default function ProjectModal({ category, projects, selected, onSelect, o
         </div>
 
         {!selected ? (
-          <ul className="modal-list">
-            {projects.map((p) => (
-              <li key={p.title}>
-                <button type="button" className="modal-list-item" onClick={() => onSelect(p)}>
-                  <span className="modal-list-text">
-                    <strong>{p.title}</strong>
-                    <small>{p.stack.join(' • ')}</small>
-                  </span>
-                  <span className="modal-list-cta">{p.link ? p.linkLabel : 'Details'} →</span>
-                </button>
-              </li>
-            ))}
-          </ul>
+          <>
+            <ModalGallery projects={projects} />
+            <ul className="modal-list">
+              {projects.map((p) => (
+                <li key={p.title}>
+                  <button type="button" className="modal-list-item" onClick={() => onSelect(p)}>
+                    <span className="modal-list-text">
+                      <strong>{p.title}</strong>
+                      <small>{p.stack.join(' • ')}</small>
+                    </span>
+                    <span className="modal-list-cta">{p.link ? p.linkLabel : 'Details'} →</span>
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </>
         ) : (
           <div className="modal-detail">
             <p className="modal-desc">{selected.description}</p>

@@ -128,7 +128,9 @@ export const projects = [
     link: 'https://typeforge.gamer.gd',
     linkLabel: 'Live Demo',
     icon: 'typing',
-    category: 'websites'
+    category: 'websites',
+    galleryLabel: 'TypeForge',
+    image: 'https://picsum.photos/seed/typeforge/800/600?grayscale'
   },
   {
     title: 'Inventory Management System',
@@ -138,7 +140,9 @@ export const projects = [
     link: '',
     linkLabel: 'Code on request',
     icon: 'inventory',
-    category: 'systems'
+    category: 'systems',
+    galleryLabel: 'Inventory',
+    image: 'https://picsum.photos/seed/inventory-sys/800/600?grayscale'
   },
   {
     title: 'NorthLine — Calm Treasury Finance Site',
@@ -148,7 +152,9 @@ export const projects = [
     link: 'https://oatmeal152003.github.io/mywebsite/',
     linkLabel: 'Live Demo',
     icon: 'finance',
-    category: 'websites'
+    category: 'websites',
+    galleryLabel: 'NorthLine',
+    image: 'https://picsum.photos/seed/northline/800/600?grayscale'
   },
   {
     title: 'Money Tracking App',
@@ -158,7 +164,9 @@ export const projects = [
     link: '',
     linkLabel: 'Code on request',
     icon: 'money',
-    category: 'apps'
+    category: 'apps',
+    galleryLabel: 'Money Tracker',
+    image: 'https://picsum.photos/seed/money-track/800/600?grayscale'
   },
   {
     title: 'The Digital Room — Interactive 3D Portfolio Museum',
@@ -168,7 +176,9 @@ export const projects = [
     link: 'https://the-digital-room.vercel.app/',
     linkLabel: 'Live Demo',
     icon: 'room',
-    category: 'websites'
+    category: 'websites',
+    galleryLabel: 'Digital Room',
+    image: 'https://picsum.photos/seed/digital-room/800/600?grayscale'
   }
 ]
 
