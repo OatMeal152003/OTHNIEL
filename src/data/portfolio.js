@@ -73,7 +73,7 @@ export const services = [
     title: 'Database & Systems',
     eyebrow: 'Data that stays correct',
     description:
-      'MySQL-backed systems — inventory, voting, enrollment, and records — with reports and admin controls.',
+      'MySQL-backed systems — inventory, enrollment, and records — with reports and admin controls.',
     tags: ['MySQL', 'Reports', 'Admin Panel'],
     theme: 'light'
   },
@@ -133,13 +133,13 @@ export const projects = [
     icon: 'money'
   },
   {
-    title: 'SSC Voting System',
+    title: 'The Digital Room — Interactive 3D Portfolio Museum',
     description:
-      'Secure online voting system for the Supreme Student Council with voter authentication, one-vote enforcement, live tallying, and admin result controls.',
-    stack: ['PHP', 'MySQL', 'JavaScript', 'HTML / CSS'],
-    link: '',
-    linkLabel: 'Code on request',
-    icon: 'voting'
+      'Interactive 3D portfolio experience styled as a virtual museum room. Instead of menus and cards, visitors explore a designed room where everyday objects open projects, skills, media, and links — like stepping into a personal creative workspace.',
+    stack: ['Three.js', 'WebGL', 'JavaScript', 'Vercel'],
+    link: 'https://the-digital-room.vercel.app/',
+    linkLabel: 'Live Demo',
+    icon: 'room'
   }
 ]
 

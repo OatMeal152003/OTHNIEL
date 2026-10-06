@@ -7,7 +7,7 @@ function includesAny(text, words) {
   return words.some((w) => text.includes(w))
 }
 
-const PROJECT_WORDS = ['northline', 'typeforge', 'typeflow', 'inventory', 'voting', 'ssc', 'money', 'treasury', 'typing', 'monkey', 'wpm', 'forge', 'stock', 'vote', 'council', 'election', 'budget', 'expense', 'track', 'scroll', 'finance']
+const PROJECT_WORDS = ['northline', 'typeforge', 'typeflow', 'inventory', 'digital room', 'museum', 'three', 'webgl', '3d', 'virtual room', 'gallery', 'immersive', 'money', 'treasury', 'typing', 'monkey', 'wpm', 'forge', 'stock', 'budget', 'expense', 'track', 'scroll', 'finance']
 
 function say(text, topic = null) {
   return { text, topic }
@@ -28,8 +28,8 @@ function elaborateTopic(topic) {
           ? ' It tracks WPM and accuracy live, with timed modes like the apps it was inspired by.'
           : topic === 'inventory'
             ? ' It covers stock levels, product records, and sales history for small shops.'
-            : topic === 'voting'
-              ? ' It enforces one vote per voter, with live tallies and an admin results panel.'
+            : topic === 'room'
+              ? ' Objects in the room act as gateways to projects, skills, media, and links — like entering a personal creative workspace.'
               : ' It logs income and expenses by category with budget summaries.'
     return `${p.title} in more detail:${extra} Built with ${p.stack.join(', ')}.${p.link ? ` Try it live: ${p.link}` : ' Code is available on request — email ' + contact.email + '.'}`
   }
@@ -37,13 +37,13 @@ function elaborateTopic(topic) {
     return `Going deeper on skills: core strengths are HTML/CSS, JavaScript, React and Tailwind CSS. He pairs React with Node.js APIs and MySQL or PHP backends depending on the project, and also works with Expo, Firebase, Supabase, and Docker.`
   }
   if (topic === 'services') {
-    return `The 7 Services panels at a glance: end-to-end websites, Figma UI/UX, React frontends, Node.js backends, MySQL systems like inventory and voting, Canva and Figma branding, and digital solutions from Firebase apps to documented capstone builds with defense prep. It closes on a black capstone finale panel — or email ${contact.email} with what you need for a quote.`
+    return `The 7 Services panels at a glance: end-to-end websites, Figma UI/UX, React frontends, Node.js backends, MySQL systems like inventory and records, Canva and Figma branding, and digital solutions from Firebase apps to documented capstone builds with defense prep. It closes on a black capstone finale panel — or email ${contact.email} with what you need for a quote.`
   }
   if (topic === 'projects') {
-    return `The 5 projects split nicely: TypeForge and Inventory on the creative-systems side, NorthLine front and center as the showpiece, plus the Money Tracking App and SSC Voting System. Which one should I unpack?`
+    return `The 5 projects split nicely: TypeForge and Inventory on the creative-systems side, NorthLine front and center as the showpiece, plus the Money Tracking App and The Digital Room. Which one should I unpack?`
   }
   if (topic === 'education') {
-    return `More on education: the BSIT program covered web development, databases, and software systems — exactly the mix behind his inventory and voting systems.`
+    return `More on education: the BSIT program covered web development, databases, and software systems — exactly the mix behind his inventory system and interactive builds like The Digital Room.`
   }
   if (topic === 'contact' || topic === 'hire') {
     return `Next step to hire him: email ${contact.email} with what you want built, your timeline, and any examples you like. He replies with a quote. His GitHub is ${contact.githubLabel}.`
@@ -101,7 +101,7 @@ export function getOatmealReply(rawMessage, context = {}) {
 
   // Projects overview
   if (includesAny(text, ['project', 'portfolio', 'work', 'built', 'showcase'])) {
-    if (!includesAny(text, ['northline', 'typeforge', 'typeflow', 'inventory', 'voting', 'ssc', 'money', 'track'])) {
+    if (!includesAny(text, ['northline', 'typeforge', 'typeflow', 'inventory', 'digital room', 'museum', 'money', 'track'])) {
       return say(`He has 5 projects: ${projectList}. Ask me about any one by name, for example "Tell me about NorthLine".`, 'projects')
     }
   }
@@ -119,9 +119,9 @@ export function getOatmealReply(rawMessage, context = {}) {
     const p = projectByIcon('inventory')
     return say(`${p.title}: ${p.description} Built with ${p.stack.join(', ')}.`, 'inventory')
   }
-  if (includesAny(text, ['voting', 'vote', 'ssc', 'council', 'election'])) {
-    const p = projectByIcon('voting')
-    return say(`${p.title}: ${p.description} Built with ${p.stack.join(', ')}.`, 'voting')
+  if (includesAny(text, ['digital room', 'museum', 'virtual room', 'gallery', 'three.js', 'threejs', 'webgl', 'immersive'])) {
+    const p = projectByIcon('room')
+    return say(`${p.title}: ${p.description} Built with ${p.stack.join(', ')}. Live demo: ${p.link}`, 'room')
   }
   if (includesAny(text, ['money', 'track', 'budget', 'expense', 'finance app'])) {
     const p = projectByIcon('money')
@@ -145,7 +145,7 @@ export function getOatmealReply(rawMessage, context = {}) {
 
   // Hiring / rates / availability
   if (includesAny(text, ['hire', 'freelance', 'available', 'rate', 'price', 'cost', 'commission'])) {
-    return say(`${profile.availability} — open for websites, web apps, inventory or voting systems, and branding work. Email ${contact.email} with your project details for a quote.`, 'hire')
+    return say(`${profile.availability} — open for websites, web apps, inventory systems, interactive 3D experiences, and branding work. Email ${contact.email} with your project details for a quote.`, 'hire')
   }
 
   // Location
@@ -223,7 +223,7 @@ export function getOatmealReply(rawMessage, context = {}) {
     const elaboration = elaborateTopic(lastTopic)
     if (elaboration) return say(`I am not sure I caught that, but sticking with our topic: ${elaboration}`, lastTopic)
   }
-  return say(`I can answer questions about ${profile.name}: his skills (${skillList}), his 5 projects, his education at ${education.school}, or contact info. Try "What are his skills?" or "Tell me about the voting system".`)
+  return say(`I can answer questions about ${profile.name}: his skills (${skillList}), his 5 projects, his education at ${education.school}, or contact info. Try "What are his skills?" or "Tell me about The Digital Room".`)
 }
 
 export const oatmealSuggestions = [

@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from 'react'
-import { FaChartLine, FaKeyboard, FaBoxes, FaExternalLinkAlt, FaCode, FaLayerGroup, FaThLarge, FaMousePointer, FaVoteYea, FaWallet } from 'react-icons/fa'
+import { FaChartLine, FaKeyboard, FaBoxes, FaExternalLinkAlt, FaCode, FaLayerGroup, FaThLarge, FaMousePointer, FaLandmark, FaWallet } from 'react-icons/fa'
 import { projects } from '../data/portfolio.js'
 
 const coverIcons = {
   finance: FaChartLine,
   typing: FaKeyboard,
   inventory: FaBoxes,
-  voting: FaVoteYea,
+  room: FaLandmark,
   money: FaWallet
 }
 
