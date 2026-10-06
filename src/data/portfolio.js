@@ -130,7 +130,7 @@ export const projects = [
     icon: 'typing',
     category: 'websites',
     galleryLabel: 'TypeForge',
-    image: 'https://picsum.photos/seed/typeforge/800/600?grayscale'
+    image: './images/TypeForge.png'
   },
   {
     title: 'Inventory Management System',
@@ -154,7 +154,7 @@ export const projects = [
     icon: 'finance',
     category: 'websites',
     galleryLabel: 'NorthLine',
-    image: 'https://picsum.photos/seed/northline/800/600?grayscale'
+    image: './images/NorthLine.png'
   },
   {
     title: 'Money Tracking App',
@@ -178,7 +178,7 @@ export const projects = [
     icon: 'room',
     category: 'websites',
     galleryLabel: 'Digital Room',
-    image: 'https://picsum.photos/seed/digital-room/800/600?grayscale'
+    image: './images/The%20Digital%20Room.png'
   }
 ]
 

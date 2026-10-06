@@ -81,7 +81,7 @@ export default function ProjectModal({ category, projects, selected, onSelect, o
     >
       <div
         ref={panelRef}
-        className={`modal-panel ${!selected ? 'modal-panel-wide' : ''}`}
+        className="modal-panel modal-panel-wide"
         role="dialog"
         aria-modal="true"
         aria-label={selected ? selected.title : `${category.label} projects`}
@@ -136,6 +136,17 @@ export default function ProjectModal({ category, projects, selected, onSelect, o
           </>
         ) : (
           <div className="modal-detail">
+            {selected.image && (
+              <img
+                src={selected.image}
+                alt={`${selected.title} preview`}
+                className="modal-detail-img"
+                loading="lazy"
+                onError={(e) => {
+                  e.currentTarget.style.display = 'none'
+                }}
+              />
+            )}
             <p className="modal-desc">{selected.description}</p>
             <div className="stack">
               {selected.stack.map((t) => (
