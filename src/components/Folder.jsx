@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './Folder.css'
 
 const darkenColor = (hex, percent) => {
@@ -19,15 +19,23 @@ const darkenColor = (hex, percent) => {
   return '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1).toUpperCase()
 }
 
-export default function Folder({ color = '#5227FF', size = 1, items = [], className = '', onToggle = null, label = 'Folder' }) {
+export default function Folder({ color = '#5227FF', size = 1, items = [], className = '', onToggle = null, label = 'Folder', open: controlledOpen = undefined }) {
   const maxItems = 3
   const papers = items.slice(0, maxItems)
   while (papers.length < maxItems) {
     papers.push(null)
   }
 
-  const [open, setOpen] = useState(false)
+  const [internalOpen, setInternalOpen] = useState(false)
+  const open = controlledOpen ?? internalOpen
   const [paperOffsets, setPaperOffsets] = useState(Array.from({ length: maxItems }, () => ({ x: 0, y: 0 })))
+
+  // When a parent closes us (e.g. modal X), reset the magnet offsets
+  useEffect(() => {
+    if (!open) {
+      setPaperOffsets(Array.from({ length: maxItems }, () => ({ x: 0, y: 0 })))
+    }
+  }, [open])
 
   const folderBackColor = darkenColor(color, 0.08)
   const paper1 = darkenColor('#ffffff', 0.1)
@@ -36,8 +44,10 @@ export default function Folder({ color = '#5227FF', size = 1, items = [], classN
 
   const handleClick = () => {
     const next = !open
-    setOpen(next)
-    if (open) {
+    if (controlledOpen === undefined) {
+      setInternalOpen(next)
+    }
+    if (!next) {
       setPaperOffsets(Array.from({ length: maxItems }, () => ({ x: 0, y: 0 })))
     }
     if (onToggle) onToggle(next)

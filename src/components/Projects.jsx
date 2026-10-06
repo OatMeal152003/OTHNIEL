@@ -59,27 +59,32 @@ export default function Projects() {
             }
             return (
               <div key={cat.id} className="folder-item">
-                <button
-                  type="button"
-                  className="folder-open-btn"
-                  onClick={() => openCategory(cat.id)}
-                  aria-haspopup="dialog"
-                  aria-label={`Open ${cat.label} folder with ${list.length} projects`}
-                >
+                <div className="folder-visual">
                   <Folder
                     size={1.4}
                     color={cat.color}
                     items={papers}
                     label={cat.label}
-                    onToggle={(isOpen) => {
-                      if (isOpen) openCategory(cat.id)
+                    open={activeId === cat.id}
+                    onToggle={(next) => {
+                      if (next) openCategory(cat.id)
+                      else if (activeId === cat.id) closeModal()
                     }}
                   />
-                </button>
+                </div>
                 <div className="folder-meta">
                   <strong>{cat.label}</strong>
                   <small>{list.length} project{list.length === 1 ? '' : 's'} • {cat.hint}</small>
                   <span className="folder-names">{list.map((p) => p.title.split(' — ')[0]).join(' • ')}</span>
+                  <button
+                    type="button"
+                    className="btn btn-ghost btn-small folder-view-btn"
+                    onClick={() => openCategory(cat.id)}
+                    aria-haspopup="dialog"
+                    aria-label={`Open ${cat.label} folder with ${list.length} projects`}
+                  >
+                    View projects
+                  </button>
                 </div>
               </div>
             )
