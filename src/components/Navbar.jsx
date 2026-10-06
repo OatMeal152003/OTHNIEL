@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { FaBars, FaTimes, FaMoon, FaSun } from 'react-icons/fa'
+import GooeyNav from './GooeyNav.jsx'
 
 const links = [
   { id: 'about', label: 'About' },
@@ -9,6 +10,8 @@ const links = [
   { id: 'education', label: 'Education' },
   { id: 'contact', label: 'Contact' }
 ]
+
+const gooeyItems = links.map((l) => ({ label: l.label, href: `#${l.id}` }))
 
 export default function Navbar({ dark, onToggle, onLogoClick }) {
   const [scrolled, setScrolled] = useState(false)
@@ -34,7 +37,23 @@ export default function Navbar({ dark, onToggle, onLogoClick }) {
           <img src="./images/OS_logo.png" alt="Othniel.dev logo" width="60" height="45" className="logo-img" />
           <span className="logo-text">Othniel.dev</span>
         </a>
-        <nav id="primary-navigation" aria-label="Primary" className={`nav-links ${open ? 'open' : ''}`}>
+        <div className="gooey-desktop">
+          <GooeyNav
+            items={gooeyItems}
+            particleCount={12}
+            particleDistances={[60, 10]}
+            particleR={80}
+            initialActiveIndex={0}
+            animationTime={400}
+            timeVariance={200}
+            colors={[1, 1, 1, 1]}
+            onNavigate={() => setOpen(false)}
+          />
+          <a href="#contact" className="btn btn-small" onClick={() => setOpen(false)}>
+            Hire Me
+          </a>
+        </div>
+        <nav id="primary-navigation" aria-label="Primary" className={`nav-links nav-links-mobile ${open ? 'open' : ''}`}>
           {links.map((l) => (
             <a key={l.id} href={`#${l.id}`} onClick={() => setOpen(false)}>
               {l.label}
