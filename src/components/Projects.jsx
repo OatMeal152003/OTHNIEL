@@ -1,8 +1,10 @@
-import { useEffect, useRef, useState } from 'react'
-import { FaChartLine, FaKeyboard, FaBoxes, FaExternalLinkAlt, FaCode, FaLayerGroup, FaThLarge, FaMousePointer, FaLandmark, FaWallet } from 'react-icons/fa'
-import { projects } from '../data/portfolio.js'
+import { useState } from 'react'
+import { FaChartLine, FaKeyboard, FaBoxes, FaLandmark, FaWallet, FaCode, FaMousePointer } from 'react-icons/fa'
+import Folder from './Folder.jsx'
+import ProjectModal from './ProjectModal.jsx'
+import { projects, projectCategories } from '../data/portfolio.js'
 
-const coverIcons = {
+const folderIcons = {
   finance: FaChartLine,
   typing: FaKeyboard,
   inventory: FaBoxes,
@@ -10,115 +12,27 @@ const coverIcons = {
   money: FaWallet
 }
 
-// Center-out order so NorthLine (index 2) leads, then outward pairs
-const CENTER_OUT_ORDER = [2, 1, 3, 0, 4]
-const FLIP_DURATION = 1100
-const FLIP_STAGGER = 110
-const FLIP_EASING = 'cubic-bezier(0.22, 1, 0.36, 1)'
-
-function ProjectCard({ p, cardRef, index }) {
-  const CoverIcon = coverIcons[p.icon] || FaCode
-  return (
-    <article
-      className="project-card"
-      ref={cardRef}
-      style={{ '--i': index }}
-    >
-      <div className="project-cover">
-        <span className="project-cover-icon"><CoverIcon /></span>
-      </div>
-      <div className="project-body">
-        <h3>{p.title}</h3>
-        <p>{p.description}</p>
-        <div className="stack">
-          {p.stack.map((t) => (
-            <span key={t} className="stack-pill">{t}</span>
-          ))}
-        </div>
-        {p.link ? (
-          <a
-            href={p.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="project-link"
-            onClick={(e) => e.stopPropagation()}
-          >
-            {p.linkLabel} <FaExternalLinkAlt size={12} />
-          </a>
-        ) : (
-          <span className="project-link muted">{p.linkLabel}</span>
-        )}
-      </div>
-    </article>
-  )
+function iconFor(key) {
+  return folderIcons[key] || FaCode
 }
 
 export default function Projects() {
-  const [spread, setSpread] = useState(false)
-  const [animating, setAnimating] = useState(false)
-  const cardRefs = useRef([])
-  const firstRects = useRef(new Map())
-  const animateOnNextPaint = useRef(false)
+  const [activeId, setActiveId] = useState(null)
+  const [selected, setSelected] = useState(null)
 
-  const captureFirstPositions = () => {
-    firstRects.current.clear()
-    cardRefs.current.forEach((el, i) => {
-      if (el) firstRects.current.set(i, el.getBoundingClientRect())
-    })
+  const activeCategory = projectCategories.find((c) => c.id === activeId) || null
+  const activeProjects = activeCategory
+    ? projects.filter((p) => p.category === activeCategory.id)
+    : []
+
+  const openCategory = (id) => {
+    setSelected(null)
+    setActiveId(id)
   }
 
-  // Run the FLIP animation after React swaps deck <-> grid layout
-  useEffect(() => {
-    if (!animateOnNextPaint.current) return
-    animateOnNextPaint.current = false
-
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    if (reduceMotion) {
-      firstRects.current.clear()
-      setAnimating(false)
-      return
-    }
-
-    const animations = []
-    cardRefs.current.forEach((el, i) => {
-      if (!el) return
-      const first = firstRects.current.get(i)
-      if (!first) return
-      const last = el.getBoundingClientRect()
-      if (last.width === 0 || last.height === 0) return
-
-      const dx = first.left - last.left
-      const dy = first.top - last.top
-      const sx = first.width / last.width
-      const sy = first.height / last.height
-      if (Math.abs(dx) < 2 && Math.abs(dy) < 2 && Math.abs(sx - 1) < 0.01 && Math.abs(sy - 1) < 0.01) return
-
-      const orderPos = CENTER_OUT_ORDER.indexOf(i)
-      const delay = (orderPos === -1 ? i : orderPos) * FLIP_STAGGER
-      const anim = el.animate(
-        [
-          { transform: `translate(${dx}px, ${dy}px) scale(${sx}, ${sy})`, opacity: 0.55 },
-          { transform: 'translate(0, 0) scale(1, 1)', opacity: 1 }
-        ],
-        { duration: FLIP_DURATION, delay, easing: FLIP_EASING, fill: 'backwards' }
-      )
-      animations.push(anim.finished.catch(() => {}))
-    })
-
-    firstRects.current.clear()
-    if (animations.length === 0) {
-      setAnimating(false)
-      return
-    }
-    Promise.all(animations).then(() => setAnimating(false)).catch(() => setAnimating(false))
-  }, [spread])
-
-  const toggleSpread = () => {
-    if (animating) return
-    captureFirstPositions()
-    animateOnNextPaint.current = true
-    setAnimating(true)
-    setSpread((s) => !s)
+  const closeModal = () => {
+    setActiveId(null)
+    setSelected(null)
   }
 
   return (
@@ -126,40 +40,61 @@ export default function Projects() {
       <div className="container reveal">
         <span className="section-tag">Selected Work</span>
         <h2 className="section-title">Projects</h2>
-        <p className="section-sub">A mix of live sites, apps, and systems. More programming projects and tools available on request.</p>
+        <p className="section-sub">Browse by folder — open one to see its projects, then pick a project for details and links.</p>
 
-        <div className="deck-controls">
-          <button
-            type="button"
-            className="btn btn-primary deck-toggle"
-            onClick={toggleSpread}
-            aria-pressed={spread}
-            disabled={animating}
-          >
-            {spread ? <><FaLayerGroup /> Stack into deck</> : <><FaThLarge /> Spread cards out</>}
-          </button>
-          <span className="deck-hint">
-            <FaMousePointer size={12} />
-            {animating
-              ? 'Dealing the cards…'
-              : spread
-                ? 'Normal view — click the button to fan them back into a deck.'
-                : 'Hover the deck to preview the fan — use the button to lay them flat.'}
-          </span>
+        <p className="folder-hint">
+          <FaMousePointer size={12} />
+          Click a folder to open its projects.
+        </p>
+
+        <div className="folders-grid">
+          {projectCategories.map((cat) => {
+            const list = projects.filter((p) => p.category === cat.id)
+            const papers = list.slice(0, 3).map((p) => {
+              const Icon = iconFor(p.icon)
+              return <Icon key={p.title} aria-hidden="true" />
+            })
+            while (papers.length < 3) {
+              papers.push(<FaCode key={`empty-${cat.id}-${papers.length}`} aria-hidden="true" style={{ opacity: 0.35 }} />)
+            }
+            return (
+              <div key={cat.id} className="folder-item">
+                <button
+                  type="button"
+                  className="folder-open-btn"
+                  onClick={() => openCategory(cat.id)}
+                  aria-haspopup="dialog"
+                  aria-label={`Open ${cat.label} folder with ${list.length} projects`}
+                >
+                  <Folder
+                    size={1.4}
+                    color={cat.color}
+                    items={papers}
+                    label={cat.label}
+                    onToggle={(isOpen) => {
+                      if (isOpen) openCategory(cat.id)
+                    }}
+                  />
+                </button>
+                <div className="folder-meta">
+                  <strong>{cat.label}</strong>
+                  <small>{list.length} project{list.length === 1 ? '' : 's'} • {cat.hint}</small>
+                  <span className="folder-names">{list.map((p) => p.title.split(' — ')[0]).join(' • ')}</span>
+                </div>
+              </div>
+            )
+          })}
         </div>
 
-        <div
-          className={spread ? 'projects-grid flip-stage spread' : 'deck-stage deck flip-stage'}
-        >
-          {projects.map((p, i) => (
-            <ProjectCard
-              key={p.title}
-              p={p}
-              index={i}
-              cardRef={(el) => { cardRefs.current[i] = el }}
-            />
-          ))}
-        </div>
+        {activeCategory && (
+          <ProjectModal
+            category={activeCategory}
+            projects={activeProjects}
+            selected={selected}
+            onSelect={setSelected}
+            onClose={closeModal}
+          />
+        )}
       </div>
     </section>
   )

@@ -19,6 +19,7 @@ import './styles/06-assistant.css'
 import './styles/07-responsive-intro.css'
 import './styles/08-dark-a11y.css'
 import './styles/09-services.css'
+import './styles/10-folders-modals.css'
 
 export default function App() {
   useReveal()

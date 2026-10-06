@@ -95,6 +95,30 @@ export const services = [
   }
 ]
 
+export const projectCategories = [
+  {
+    id: 'websites',
+    label: 'Websites',
+    hint: 'Live sites & immersive web experiences',
+    color: '#000000',
+    icon: 'finance'
+  },
+  {
+    id: 'systems',
+    label: 'Systems',
+    hint: 'Database-driven systems',
+    color: '#404040',
+    icon: 'inventory'
+  },
+  {
+    id: 'apps',
+    label: 'Applications',
+    hint: 'Interactive apps & tools',
+    color: '#737373',
+    icon: 'typing'
+  }
+]
+
 export const projects = [
   {
     title: 'TypeForge — Typing Speed App',
@@ -103,7 +127,8 @@ export const projects = [
     stack: ['React', 'JavaScript', 'CSS', 'LocalStorage'],
     link: 'https://typeforge.gamer.gd',
     linkLabel: 'Live Demo',
-    icon: 'typing'
+    icon: 'typing',
+    category: 'apps'
   },
   {
     title: 'Inventory Management System',
@@ -112,7 +137,8 @@ export const projects = [
     stack: ['PHP / Node.js', 'MySQL', 'HTML', 'CSS'],
     link: '',
     linkLabel: 'Code on request',
-    icon: 'inventory'
+    icon: 'inventory',
+    category: 'systems'
   },
   {
     title: 'NorthLine — Calm Treasury Finance Site',
@@ -121,7 +147,8 @@ export const projects = [
     stack: ['HTML', 'CSS', 'JavaScript', 'Scroll Animation'],
     link: 'https://oatmeal152003.github.io/mywebsite/',
     linkLabel: 'Live Demo',
-    icon: 'finance'
+    icon: 'finance',
+    category: 'websites'
   },
   {
     title: 'Money Tracking App',
@@ -130,7 +157,8 @@ export const projects = [
     stack: ['React', 'JavaScript', 'LocalStorage', 'Charts'],
     link: '',
     linkLabel: 'Code on request',
-    icon: 'money'
+    icon: 'money',
+    category: 'apps'
   },
   {
     title: 'The Digital Room — Interactive 3D Portfolio Museum',
@@ -139,7 +167,8 @@ export const projects = [
     stack: ['Three.js', 'WebGL', 'JavaScript', 'Vercel'],
     link: 'https://the-digital-room.vercel.app/',
     linkLabel: 'Live Demo',
-    icon: 'room'
+    icon: 'room',
+    category: 'websites'
   }
 ]
 
