@@ -53,7 +53,7 @@ export default function App() {
       <a href="#main-content" className="skip-link">Skip to main content</a>
       <Navbar dark={dark} onToggle={() => setDark((d) => !d)} onLogoClick={replayIntro} />
       <main id="main-content">
-        <Hero />
+        <Hero dark={dark} />
         <Skills />
         <Services />
         <Projects />

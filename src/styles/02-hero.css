@@ -59,6 +59,28 @@
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
 }
 .hero h1 { font-size: 52px; margin: 18px 0 6px; color: var(--maroon-deep); line-height: 1.05; }
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+.hero-name {
+  margin: 18px 0 6px;
+  font-family: inherit;
+  font-weight: 700;
+}
+.hero-name-line {
+  height: clamp(72px, 11vw, 118px);
+}
+.hero-name-line + .hero-name-line {
+  margin-top: -8px;
+}
 .accent-text { color: var(--maroon); }
 .hero h2 { font-size: 21px; color: #404040; margin: 0 0 16px; font-weight: 600; }
 .lead { font-size: 17px; line-height: 1.65; color: #525252; }
