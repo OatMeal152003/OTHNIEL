@@ -144,7 +144,7 @@
 }
 
 .gooey-nav-container .effect.active::after {
-  animation: pill 0.3s ease both;
+  animation: pill 0.3s ease backwards;
 }
 
 @keyframes pill {
@@ -240,7 +240,7 @@
   gap: 14px;
 }
 
-.nav-links-mobile {
+.nav-links.nav-links-mobile {
   display: none;
 }
 
@@ -248,10 +248,10 @@
   .gooey-desktop {
     display: none;
   }
-  .nav-links-mobile {
+  .nav-links.nav-links-mobile {
     display: none;
   }
-  .nav-links-mobile.open {
+  .nav-links.nav-links-mobile.open {
     display: flex;
   }
 }
