@@ -91,7 +91,7 @@ export default function GooeyNav({
   }
 
   const updateEffectPosition = (element) => {
-    if (!containerRef.current || !filterRef.current || !textRef.current) return
+    if (!containerRef.current || !filterRef.current) return
     const containerRect = containerRef.current.getBoundingClientRect()
     const pos = element.getBoundingClientRect()
 
@@ -102,8 +102,6 @@ export default function GooeyNav({
       height: `${pos.height}px`
     }
     Object.assign(filterRef.current.style, styles)
-    Object.assign(textRef.current.style, styles)
-    textRef.current.innerText = element.innerText
   }
 
   const activate = (liEl, index) => {
@@ -120,12 +118,6 @@ export default function GooeyNav({
           // already removed
         }
       })
-    }
-
-    if (textRef.current) {
-      textRef.current.classList.remove('active')
-      void textRef.current.offsetWidth
-      textRef.current.classList.add('active')
     }
 
     if (filterRef.current) {
@@ -154,7 +146,6 @@ export default function GooeyNav({
     const activeLi = navRef.current.querySelectorAll('li')[activeIndex]
     if (activeLi) {
       updateEffectPosition(activeLi)
-      textRef.current?.classList.add('active')
     }
 
     const resizeObserver = new ResizeObserver(() => {
