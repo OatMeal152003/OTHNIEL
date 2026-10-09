@@ -157,16 +157,16 @@ export const projects = [
     image: './images/NorthLine.png'
   },
   {
-    title: 'Money Tracking App',
+    title: 'Kwenta App',
     description:
-      'Personal finance tracker with income and expense logging, budgets by category, balance summaries, and clean spending insights.',
+      'Kwenta helps you keep track of your money without the stress. Log an expense in just a few taps, see where your pesos go each month, and set budgets that nudge you gently instead of scolding you. Keep your Cash, GCash, Maya, and bank balances in one place, and track who owes you (and who you owe) with the built-in utang list. Kwenta works fully offline, so you can record spending anywhere, and your data stays on your phone unless you choose to back it up.',
     stack: ['React', 'JavaScript', 'LocalStorage', 'Charts'],
     link: '',
     linkLabel: 'Code on request',
     icon: 'money',
     category: 'apps',
-    galleryLabel: 'Money Tracker',
-    image: 'https://picsum.photos/seed/money-track/800/600?grayscale'
+    galleryLabel: 'Kwenta App',
+    image: './images/Kwenta.png'
   },
   {
     title: 'The Digital Room — Interactive 3D Portfolio Museum',
