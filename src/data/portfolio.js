@@ -161,8 +161,15 @@ export const projects = [
     description:
       'Kwenta helps you keep track of your money without the stress. Log an expense in just a few taps, see where your pesos go each month, and set budgets that nudge you gently instead of scolding you. Keep your Cash, GCash, Maya, and bank balances in one place, and track who owes you (and who you owe) with the built-in utang list. Kwenta works fully offline, so you can record spending anywhere, and your data stays on your phone unless you choose to back it up.',
     stack: ['React', 'JavaScript', 'LocalStorage', 'Charts'],
-    link: '',
-    linkLabel: 'Code on request',
+    link: 'https://kwenta-app-chi.vercel.app/',
+    linkLabel: 'Live Demo',
+    installTitle: 'Install as app',
+    installSteps: [
+      'Open the Live Demo link in Chrome (Android) or Safari (iPhone) on your phone.',
+      'Android / Chrome: tap the ⋮ menu (top-right), then tap "Add to Home screen" or "Install app" and confirm.',
+      'iPhone / Safari: tap the Share button, scroll down, tap "Add to Home Screen", then tap Add.',
+      'Launch Kwenta from the new home-screen icon — it opens full-screen like a native app and works offline.'
+    ],
     icon: 'money',
     category: 'apps',
     galleryLabel: 'Kwenta App',

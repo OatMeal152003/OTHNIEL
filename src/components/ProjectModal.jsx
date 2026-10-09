@@ -165,6 +165,16 @@ export default function ProjectModal({ category, projects, selected, onSelect, o
             ) : (
               <span className="project-link muted">{selected.linkLabel}</span>
             )}
+            {selected.installSteps && selected.installSteps.length > 0 && (
+              <div className="install-note">
+                <strong>{selected.installTitle || 'Install as app'}</strong>
+                <ol>
+                  {selected.installSteps.map((step, i) => (
+                    <li key={i}>{step}</li>
+                  ))}
+                </ol>
+              </div>
+            )}
           </div>
         )}
       </div>

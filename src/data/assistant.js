@@ -31,7 +31,11 @@ function elaborateTopic(topic) {
             : topic === 'room'
               ? ' Objects in the room act as gateways to projects, skills, media, and links — like entering a personal creative workspace.'
               : ' It tracks Cash, GCash, Maya, and bank balances in one place, with budgets and an offline utang list.'
-    return `${p.title} in more detail:${extra} Built with ${p.stack.join(', ')}.${p.link ? ` Try it live: ${p.link}` : ' Code is available on request — email ' + contact.email + '.'}`
+    const installHint =
+      topic === 'money' && p.installSteps
+        ? ` Install it as an app: ${p.installSteps.join(' ')}`
+        : ''
+    return `${p.title} in more detail:${extra} Built with ${p.stack.join(', ')}.${p.link ? ` Try it live: ${p.link}` : ' Code is available on request — email ' + contact.email + '.'}${installHint}`
   }
   if (topic === 'skills') {
     return `Going deeper on skills: core strengths are HTML/CSS, JavaScript, React and Tailwind CSS. He pairs React with Node.js APIs and MySQL or PHP backends depending on the project, and also works with Expo, Firebase, Supabase, and Docker.`
@@ -123,9 +127,10 @@ export function getOatmealReply(rawMessage, context = {}) {
     const p = projectByIcon('room')
     return say(`${p.title}: ${p.description} Built with ${p.stack.join(', ')}. Live demo: ${p.link}`, 'room')
   }
-  if (includesAny(text, ['money', 'kwenta', 'track', 'budget', 'expense', 'utang', 'gcash', 'finance app'])) {
+  if (includesAny(text, ['money', 'kwenta', 'track', 'budget', 'expense', 'utang', 'gcash', 'finance app', 'install'])) {
     const p = projectByIcon('money')
-    return say(`${p.title}: ${p.description} Built with ${p.stack.join(', ')}.`, 'money')
+    const install = p.installSteps ? ` To install it as an app: ${p.installSteps.join(' ')}` : ''
+    return say(`${p.title}: ${p.description} Built with ${p.stack.join(', ')}.${p.link ? ` Try it live: ${p.link}.` : ''}${install}`, 'money')
   }
 
   // Education

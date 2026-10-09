@@ -291,6 +291,31 @@
   color: #404040;
 }
 
+.install-note {
+  background: #fafafa;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 14px 16px;
+}
+
+.install-note strong {
+  display: block;
+  font-size: 13.5px;
+  margin-bottom: 8px;
+  color: #0a0a0a;
+}
+
+.install-note ol {
+  margin: 0;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: #404040;
+}
+
 /* Dark-mode: projects section is forced light, keep modal light for readability */
 body.dark-mode .folder-item {
   background: #ffffff;
