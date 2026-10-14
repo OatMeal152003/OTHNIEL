@@ -133,16 +133,22 @@ export const projects = [
     image: './images/TypeForge.png'
   },
   {
-    title: 'Inventory Management System',
+    title: 'Stockly — Modern Inventory System',
     description:
-      'Database-driven inventory system with stock tracking, product management, and sales records. Built for small businesses that need simple, reliable controls.',
-    stack: ['PHP / Node.js', 'MySQL', 'HTML', 'CSS'],
-    link: '',
-    linkLabel: 'Code on request',
+      'Stockly is a smooth, modern inventory system built for small teams. The dashboard puts total stock value, movement trends, weekly units sold, recent transactions, and low-stock alerts on one clean screen. Beyond the dashboard it covers products with SKUs, stock in and stock out, suppliers, purchase orders, and reports — all wrapped in a fast dark/light interface with search, notifications, and charts that update as you work.',
+    stack: ['Next.js', 'React', 'Tailwind CSS', 'Charts', 'Vercel'],
+    link: 'https://stockly-eight-xi.vercel.app/',
+    linkLabel: 'Live Demo',
     icon: 'inventory',
     category: 'systems',
-    galleryLabel: 'Inventory',
-    image: 'https://picsum.photos/seed/inventory-sys/800/600?grayscale'
+    galleryLabel: 'Stockly',
+    image: './images/Stockly.png',
+    demo: {
+      title: 'Try the live demo',
+      username: 'demo@stockly',
+      password: 'demo123',
+      note: 'Use the demo account to sign in and click around — no invite or signup needed.'
+    }
   },
   {
     title: 'NorthLine — Calm Treasury Finance Site',

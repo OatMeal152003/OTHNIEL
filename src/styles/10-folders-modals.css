@@ -316,6 +316,85 @@
   color: #404040;
 }
 
+/* Demo account box (Stockly) — dark card echoing the project's own UI */
+.demo-note {
+  background: #0a0a0a;
+  border: 1px solid #262626;
+  border-radius: 12px;
+  padding: 14px 16px;
+}
+
+.demo-note strong {
+  display: block;
+  font-size: 13.5px;
+  margin-bottom: 10px;
+  color: #ffffff;
+}
+
+.demo-creds {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.demo-cred {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #171717;
+  border: 1px solid #2e2e2e;
+  border-radius: 9px;
+  padding: 7px 9px 7px 11px;
+}
+
+.demo-cred small {
+  font-size: 10.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: #a3a3a3;
+}
+
+.demo-cred code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 13px;
+  font-weight: 700;
+  color: #6ee7b7;
+  word-break: break-all;
+}
+
+.demo-copy {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  flex: 0 0 auto;
+  border: 0;
+  border-radius: 6px;
+  background: #262626;
+  color: #d4d4d4;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.demo-copy:hover {
+  background: #404040;
+  color: #ffffff;
+}
+
+.demo-copy:focus-visible {
+  outline: 2px solid #6ee7b7;
+  outline-offset: 2px;
+}
+
+.demo-note-text {
+  margin: 10px 0 0;
+  font-size: 13px;
+  line-height: 1.6;
+  color: #a3a3a3;
+}
+
 /* Dark-mode: projects section is forced light, keep modal light for readability */
 body.dark-mode .folder-item {
   background: #ffffff;

@@ -1,5 +1,5 @@
 import { Suspense, lazy, useEffect, useRef, useState } from 'react'
-import { FaTimes, FaExternalLinkAlt, FaArrowLeft } from 'react-icons/fa'
+import { FaTimes, FaExternalLinkAlt, FaArrowLeft, FaCopy, FaCheck } from 'react-icons/fa'
 
 const CircularGallery = lazy(() => import('./CircularGallery.jsx'))
 
@@ -37,6 +37,21 @@ function ModalGallery({ projects }) {
 export default function ProjectModal({ category, projects, selected, onSelect, onClose }) {
   const panelRef = useRef(null)
   const closeRef = useRef(null)
+  const [copied, setCopied] = useState(null)
+
+  const copyValue = async (key, value) => {
+    try {
+      await navigator.clipboard.writeText(value)
+      setCopied(key)
+      setTimeout(() => setCopied(null), 1600)
+    } catch {
+      // clipboard unavailable (insecure context) — the value stays visible to copy manually
+    }
+  }
+
+  useEffect(() => {
+    setCopied(null)
+  }, [selected])
 
   useEffect(() => {
     closeRef.current?.focus()
@@ -164,6 +179,38 @@ export default function ProjectModal({ category, projects, selected, onSelect, o
               </a>
             ) : (
               <span className="project-link muted">{selected.linkLabel}</span>
+            )}
+            {selected.demo && (
+              <div className="demo-note">
+                <strong>{selected.demo.title || 'Demo account'}</strong>
+                <div className="demo-creds">
+                  <span className="demo-cred">
+                    <small>Username</small>
+                    <code>{selected.demo.username}</code>
+                    <button
+                      type="button"
+                      className="demo-copy"
+                      onClick={() => copyValue('username', selected.demo.username)}
+                      aria-label={`Copy demo username ${selected.demo.username}`}
+                    >
+                      {copied === 'username' ? <FaCheck size={11} /> : <FaCopy size={11} />}
+                    </button>
+                  </span>
+                  <span className="demo-cred">
+                    <small>Password</small>
+                    <code>{selected.demo.password}</code>
+                    <button
+                      type="button"
+                      className="demo-copy"
+                      onClick={() => copyValue('password', selected.demo.password)}
+                      aria-label={`Copy demo password ${selected.demo.password}`}
+                    >
+                      {copied === 'password' ? <FaCheck size={11} /> : <FaCopy size={11} />}
+                    </button>
+                  </span>
+                </div>
+                {selected.demo.note && <p className="demo-note-text">{selected.demo.note}</p>}
+              </div>
             )}
             {selected.installSteps && selected.installSteps.length > 0 && (
               <div className="install-note">

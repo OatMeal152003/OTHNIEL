@@ -7,7 +7,7 @@ function includesAny(text, words) {
   return words.some((w) => text.includes(w))
 }
 
-const PROJECT_WORDS = ['northline', 'typeforge', 'typeflow', 'inventory', 'digital room', 'museum', 'three', 'webgl', '3d', 'virtual room', 'gallery', 'immersive', 'money', 'kwenta', 'treasury', 'typing', 'monkey', 'wpm', 'forge', 'stock', 'budget', 'expense', 'track', 'utang', 'gcash', 'scroll', 'finance']
+const PROJECT_WORDS = ['northline', 'typeforge', 'typeflow', 'inventory', 'stockly', 'digital room', 'museum', 'three', 'webgl', '3d', 'virtual room', 'gallery', 'immersive', 'money', 'kwenta', 'treasury', 'typing', 'monkey', 'wpm', 'forge', 'stock', 'budget', 'expense', 'track', 'utang', 'gcash', 'scroll', 'finance']
 
 function say(text, topic = null) {
   return { text, topic }
@@ -27,7 +27,7 @@ function elaborateTopic(topic) {
         : topic === 'typing'
           ? ' It tracks WPM and accuracy live, with timed modes like the apps it was inspired by.'
           : topic === 'inventory'
-            ? ' It covers stock levels, product records, and sales history for small shops.'
+            ? ' The dashboard shows stock value, movement trends, weekly sales, and low-stock alerts at a glance, with products, stock in and out, suppliers, purchase orders, and reports behind it.'
             : topic === 'room'
               ? ' Objects in the room act as gateways to projects, skills, media, and links — like entering a personal creative workspace.'
               : ' It tracks Cash, GCash, Maya, and bank balances in one place, with budgets and an offline utang list.'
@@ -35,7 +35,10 @@ function elaborateTopic(topic) {
       topic === 'money' && p.installSteps
         ? ` Install it as an app: ${p.installSteps.join(' ')}`
         : ''
-    return `${p.title} in more detail:${extra} Built with ${p.stack.join(', ')}.${p.link ? ` Try it live: ${p.link}` : ' Code is available on request — email ' + contact.email + '.'}${installHint}`
+    const demoHint = p.demo
+      ? ` Sign in with the demo account — username ${p.demo.username}, password ${p.demo.password}.`
+      : ''
+    return `${p.title} in more detail:${extra} Built with ${p.stack.join(', ')}.${p.link ? ` Try it live: ${p.link}` : ' Code is available on request — email ' + contact.email + '.'}${demoHint}${installHint}`
   }
   if (topic === 'skills') {
     return `Going deeper on skills: core strengths are HTML/CSS, JavaScript, React and Tailwind CSS. He pairs React with Node.js APIs and MySQL or PHP backends depending on the project, and also works with Expo, Firebase, Supabase, and Docker.`
@@ -44,10 +47,10 @@ function elaborateTopic(topic) {
     return `The 7 Services panels at a glance: end-to-end websites, Figma UI/UX, React frontends, Node.js backends, MySQL systems like inventory and records, Canva and Figma branding, and digital solutions from Firebase apps to documented capstone builds with defense prep. It closes on a black capstone finale panel — or email ${contact.email} with what you need for a quote.`
   }
   if (topic === 'projects') {
-    return `The 5 projects split nicely: TypeForge and Inventory on the creative-systems side, NorthLine front and center as the showpiece, plus Kwenta App and The Digital Room. Which one should I unpack?`
+    return `The 5 projects split nicely: TypeForge and Stockly on the creative-systems side, NorthLine front and center as the showpiece, plus Kwenta App and The Digital Room. Which one should I unpack?`
   }
   if (topic === 'education') {
-    return `More on education: the BSIT program covered web development, databases, and software systems — exactly the mix behind his inventory system and interactive builds like The Digital Room.`
+    return `More on education: the BSIT program covered web development, databases, and software systems — exactly the mix behind his Stockly inventory system and interactive builds like The Digital Room.`
   }
   if (topic === 'contact' || topic === 'hire') {
     return `Next step to hire him: email ${contact.email} with what you want built, your timeline, and any examples you like. He replies with a quote. His GitHub is ${contact.githubLabel}.`
@@ -121,7 +124,10 @@ export function getOatmealReply(rawMessage, context = {}) {
   }
   if (includesAny(text, ['inventory', 'stock'])) {
     const p = projectByIcon('inventory')
-    return say(`${p.title}: ${p.description} Built with ${p.stack.join(', ')}.`, 'inventory')
+    const demo = p.demo
+      ? ` Sign in with the demo account — username ${p.demo.username}, password ${p.demo.password}.`
+      : ''
+    return say(`${p.title}: ${p.description} Built with ${p.stack.join(', ')}.${p.link ? ` Live demo: ${p.link}` : ''}${demo}`, 'inventory')
   }
   if (includesAny(text, ['digital room', 'museum', 'virtual room', 'gallery', 'three.js', 'threejs', 'webgl', 'immersive'])) {
     const p = projectByIcon('room')
