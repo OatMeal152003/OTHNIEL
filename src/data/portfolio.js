@@ -192,6 +192,18 @@ export const projects = [
     category: 'websites',
     galleryLabel: 'Digital Room',
     image: './images/The%20Digital%20Room.png'
+  },
+  {
+    title: 'BUHAT — TRAIN HARD. MOVE FORWARD.',
+    description:
+      'A premium interactive fitness platform: a cinematic marketing landing page connected to a complete workout application — searchable workout and exercise libraries, an active-workout mode with real timestamp-based timers, a weekly planner, and progress analytics derived only from data you actually record.',
+    stack: ['React', 'Vite', 'JavaScript', 'CSS', 'Vercel'],
+    link: 'https://buhat-jade.vercel.app/',
+    linkLabel: 'Live Demo',
+    icon: 'fitness',
+    category: 'websites',
+    galleryLabel: 'BUHAT',
+    image: './images/Buhat.png'
   }
 ]
 

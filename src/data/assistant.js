@@ -7,7 +7,7 @@ function includesAny(text, words) {
   return words.some((w) => text.includes(w))
 }
 
-const PROJECT_WORDS = ['northline', 'typeforge', 'typeflow', 'inventory', 'stockly', 'digital room', 'museum', 'three', 'webgl', '3d', 'virtual room', 'gallery', 'immersive', 'money', 'kwenta', 'treasury', 'typing', 'monkey', 'wpm', 'forge', 'stock', 'budget', 'expense', 'track', 'utang', 'gcash', 'scroll', 'finance']
+const PROJECT_WORDS = ['northline', 'typeforge', 'typeflow', 'inventory', 'stockly', 'digital room', 'museum', 'three', 'webgl', '3d', 'virtual room', 'gallery', 'immersive', 'money', 'kwenta', 'treasury', 'typing', 'monkey', 'wpm', 'forge', 'stock', 'budget', 'expense', 'track', 'utang', 'gcash', 'scroll', 'finance', 'buhat', 'fitness', 'workout', 'gym', 'training', 'planner', 'analytics']
 
 function say(text, topic = null) {
   return { text, topic }
@@ -30,7 +30,9 @@ function elaborateTopic(topic) {
             ? ' The dashboard shows stock value, movement trends, weekly sales, and low-stock alerts at a glance, with products, stock in and out, suppliers, purchase orders, and reports behind it.'
             : topic === 'room'
               ? ' Objects in the room act as gateways to projects, skills, media, and links — like entering a personal creative workspace.'
-              : ' It tracks Cash, GCash, Maya, and bank balances in one place, with budgets and an offline utang list.'
+              : topic === 'fitness'
+                ? ' It pairs a cinematic marketing landing page with a full workout app: searchable workout and exercise libraries, an active-workout mode with real timestamp-based timers, a weekly planner, and progress analytics built only from data you actually record.'
+                : ' It tracks Cash, GCash, Maya, and bank balances in one place, with budgets and an offline utang list.'
     const installHint =
       topic === 'money' && p.installSteps
         ? ` Install it as an app: ${p.installSteps.join(' ')}`
@@ -47,7 +49,7 @@ function elaborateTopic(topic) {
     return `The 7 Services panels at a glance: end-to-end websites, Figma UI/UX, React frontends, Node.js backends, MySQL systems like inventory and records, Canva and Figma branding, and digital solutions from Firebase apps to documented capstone builds with defense prep. It closes on a black capstone finale panel — or email ${contact.email} with what you need for a quote.`
   }
   if (topic === 'projects') {
-    return `The 5 projects split nicely: TypeForge and Stockly on the creative-systems side, NorthLine front and center as the showpiece, plus Kwenta App and The Digital Room. Which one should I unpack?`
+    return `The 6 projects split nicely: TypeForge and Stockly on the creative-systems side, NorthLine front and center as the showpiece, plus Kwenta App and The Digital Room. Which one should I unpack?`
   }
   if (topic === 'education') {
     return `More on education: the BSIT program covered web development, databases, and software systems — exactly the mix behind his Stockly inventory system and interactive builds like The Digital Room.`
@@ -85,7 +87,7 @@ export function getOatmealReply(rawMessage, context = {}) {
 
   // Who is Oatmeal / who are you
   if (includesAny(text, ['who are you', 'what are you', 'oatmeal', 'your name'])) {
-    return say(`I am Oatmeal, the talking assistant on ${profile.name}'s portfolio. I answer questions about what he does, his skills, his 5 projects, and how to contact him.`)
+    return say(`I am Oatmeal, the talking assistant on ${profile.name}'s portfolio. I answer questions about what he does, his skills, his 6 projects, and how to contact him.`)
   }
 
   // Name / about / bio (skip when a specific project is named — project checks run below)
@@ -108,8 +110,8 @@ export function getOatmealReply(rawMessage, context = {}) {
 
   // Projects overview
   if (includesAny(text, ['project', 'portfolio', 'work', 'built', 'showcase'])) {
-    if (!includesAny(text, ['northline', 'typeforge', 'typeflow', 'inventory', 'digital room', 'museum', 'money', 'track'])) {
-      return say(`He has 5 projects: ${projectList}. Ask me about any one by name, for example "Tell me about NorthLine".`, 'projects')
+    if (!includesAny(text, ['northline', 'typeforge', 'typeflow', 'inventory', 'digital room', 'museum', 'money', 'track', 'buhat', 'fitness', 'workout'])) {
+      return say(`He has 6 projects: ${projectList}. Ask me about any one by name, for example "Tell me about NorthLine".`, 'projects')
     }
   }
 
@@ -137,6 +139,12 @@ export function getOatmealReply(rawMessage, context = {}) {
     const p = projectByIcon('money')
     const install = p.installSteps ? ` To install it as an app: ${p.installSteps.join(' ')}` : ''
     return say(`${p.title}: ${p.description} Built with ${p.stack.join(', ')}.${p.link ? ` Try it live: ${p.link}.` : ''}${install}`, 'money')
+  }
+  if (includesAny(text, ['buhat', 'fitness', 'workout', 'gym', 'training', 'planner', 'analytics'])) {
+    const p = projects.find((x) => x.title.toLowerCase().includes('buhat'))
+    if (p) {
+      return say(`${p.title}: ${p.description} Built with ${p.stack.join(', ')}. Live demo: ${p.link}`, 'fitness')
+    }
   }
 
   // Education
@@ -223,7 +231,7 @@ export function getOatmealReply(rawMessage, context = {}) {
       const elaboration = elaborateTopic(lastTopic)
       if (elaboration) return say(elaboration, lastTopic)
     }
-    return say(`Here is more: ${profile.name} built 5 projects — ${projectList}. He holds a ${education.degree}. Email him at ${contact.email} to start a project.`, 'projects')
+    return say(`Here is more: ${profile.name} built 6 projects — ${projectList}. He holds a ${education.degree}. Email him at ${contact.email} to start a project.`, 'projects')
   }
   if (includesAny(text, ['i need', 'i want', 'looking for', 'can you build', 'make me'])) {
     return say(`Noted! ${profile.name} takes freelance work for websites, web apps, and database systems. Email ${contact.email} with what you need and he will reply with a quote.`, 'hire')
@@ -234,7 +242,7 @@ export function getOatmealReply(rawMessage, context = {}) {
     const elaboration = elaborateTopic(lastTopic)
     if (elaboration) return say(`I am not sure I caught that, but sticking with our topic: ${elaboration}`, lastTopic)
   }
-  return say(`I can answer questions about ${profile.name}: his skills (${skillList}), his 5 projects, his education at ${education.school}, or contact info. Try "What are his skills?" or "Tell me about The Digital Room".`)
+  return say(`I can answer questions about ${profile.name}: his skills (${skillList}), his 6 projects, his education at ${education.school}, or contact info. Try "What are his skills?" or "Tell me about The Digital Room".`)
 }
 
 export const oatmealSuggestions = [
