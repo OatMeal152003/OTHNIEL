@@ -204,6 +204,18 @@ export const projects = [
     category: 'websites',
     galleryLabel: 'BUHAT',
     image: './images/Buhat.png'
+  },
+  {
+    title: 'Protect the King',
+    description:
+      'Protect the King is a pixel-art 3D chess game that runs in your browser. Chess is played on battlefield boards with voxel pieces. When a piece captures another, the camera cuts to a close-up and the pieces fight it out.',
+    stack: ['React', 'JavaScript'],
+    link: 'https://protecttheking.netlify.app/',
+    linkLabel: 'Live Demo',
+    icon: 'chess',
+    category: 'apps',
+    galleryLabel: 'Protect the King',
+    image: './images/ProtectTheKing.png'
   }
 ]
 

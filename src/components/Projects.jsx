@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { FaChartLine, FaKeyboard, FaBoxes, FaLandmark, FaWallet, FaDumbbell, FaCode, FaMousePointer } from 'react-icons/fa'
+import { FaChartLine, FaKeyboard, FaBoxes, FaLandmark, FaWallet, FaDumbbell, FaChess, FaCode, FaMousePointer } from 'react-icons/fa'
 import Folder from './Folder.jsx'
 import ProjectModal from './ProjectModal.jsx'
 import { projects, projectCategories } from '../data/portfolio.js'
@@ -10,7 +10,8 @@ const folderIcons = {
   inventory: FaBoxes,
   room: FaLandmark,
   money: FaWallet,
-  fitness: FaDumbbell
+  fitness: FaDumbbell,
+  chess: FaChess
 }
 
 function iconFor(key) {
