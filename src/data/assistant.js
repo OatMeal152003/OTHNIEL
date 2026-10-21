@@ -151,7 +151,8 @@ export function getOatmealReply(rawMessage, context = {}) {
   if (includesAny(text, ['protect the king', 'protect', 'chess', 'pixel', 'voxel', 'battlefield', 'king'])) {
     const p = projects.find((x) => x.title.toLowerCase().includes('protect the king'))
     if (p) {
-      return say(`${p.title}: ${p.description} Built with ${p.stack.join(', ')}. Live demo: ${p.link}`, 'chess')
+      const install = p.installSteps ? ` Install it as an app: ${p.installSteps.join(' ')}` : ''
+      return say(`${p.title}: ${p.description} Built with ${p.stack.join(', ')}.${p.link ? ` Try it live: ${p.link}.` : ''}${install}`, 'chess')
     }
   }
 

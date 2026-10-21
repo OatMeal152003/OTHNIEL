@@ -212,6 +212,13 @@ export const projects = [
     stack: ['React', 'JavaScript'],
     link: 'https://protecttheking.netlify.app/',
     linkLabel: 'Live Demo',
+    installTitle: 'Install as app',
+    installSteps: [
+      'Open the Live Demo link in Chrome (Android) or Safari (iPhone) on your phone.',
+      'Android / Chrome: tap the ⋮ menu (top-right), then tap "Add to Home screen" or "Install app" and confirm.',
+      'iPhone / Safari: tap the Share button, scroll down, tap "Add to Home Screen", then tap Add.',
+      'Launch Protect the King from the new home-screen icon — it opens full-screen like a native app.'
+    ],
     icon: 'chess',
     category: 'apps',
     galleryLabel: 'Protect the King',
